@@ -1,27 +1,27 @@
 import { MailtrapClient } from "mailtrap";
 
-if (!process.env.MAILTRAP_TOKEN) {
-  throw new Error("Missing environment variable: MAILTRAP_TOKEN");
-}
-
-if (!process.env.MAILTRAP_SENDER_EMAIL) {
-  throw new Error("Missing environment variable: MAILTRAP_SENDER_EMAIL");
-}
-
-const client = new MailtrapClient({
-  token: process.env.MAILTRAP_TOKEN,
-});
-
-const sender = {
-  email: process.env.MAILTRAP_SENDER_EMAIL,
-  name: "Nova Hackathon Team",
-};
+let client: MailtrapClient | null = null;
 
 export async function sendRegistrationEmail(
   leaderEmail: string,
   teamName: string,
   memberNames: string[]
 ) {
+  if (!process.env.MAILTRAP_TOKEN || !process.env.MAILTRAP_SENDER_EMAIL) {
+    console.warn("Mailtrap credentials are missing. Skipping registration confirmation email.");
+    return null;
+  }
+
+  if (!client) {
+    client = new MailtrapClient({
+      token: process.env.MAILTRAP_TOKEN,
+    });
+  }
+
+  const sender = {
+    email: process.env.MAILTRAP_SENDER_EMAIL,
+    name: "Nova Hackathon Team",
+  };
   const htmlTemplate = `
     <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto;">
       <h2 style="color: #8b5cf6;">Registration Confirmed! 🎉</h2>

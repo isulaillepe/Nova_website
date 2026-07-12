@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { Github, Twitter, Linkedin, Instagram, Youtube, Mail, MapPin, Phone } from "lucide-react";
+import { Mail, MapPin, Phone } from "lucide-react";
+import { FaGithub, FaTwitter, FaLinkedin, FaInstagram, FaYoutube } from "react-icons/fa";
 
 const footerLinks = {
   product: [
@@ -32,11 +33,11 @@ const footerLinks = {
 };
 
 const socialLinks = [
-  { icon: Twitter, href: "https://twitter.com/nova", label: "Twitter" },
-  { icon: Github, href: "https://github.com/nova", label: "GitHub" },
-  { icon: Linkedin, href: "https://linkedin.com/company/nova", label: "LinkedIn" },
-  { icon: Instagram, href: "https://instagram.com/nova", label: "Instagram" },
-  { icon: Youtube, href: "https://youtube.com/nova", label: "YouTube" },
+  { icon: FaTwitter, href: "https://twitter.com/nova", label: "Twitter" },
+  { icon: FaGithub, href: "https://github.com/nova", label: "GitHub" },
+  { icon: FaLinkedin, href: "https://linkedin.com/company/nova", label: "LinkedIn" },
+  { icon: FaInstagram, href: "https://instagram.com/nova", label: "Instagram" },
+  { icon: FaYoutube, href: "https://youtube.com/nova", label: "YouTube" },
 ];
 
 const contactInfo = [
