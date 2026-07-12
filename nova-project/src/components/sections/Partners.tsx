@@ -41,7 +41,7 @@ export function Partners() {
             </span>
           </div>
           <h2 className="mb-4 text-3xl font-bold tracking-tight text-white sm:text-4xl md:text-5xl">
-            Used by the world's best teams
+            Used by the world&apos;s best teams
           </h2>
           <p className="mx-auto max-w-2xl text-lg text-slate-300">
             From startups to enterprises, teams trust Nova to power their most critical applications.

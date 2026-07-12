@@ -38,7 +38,7 @@ export function CTA() {
 
         <div className="mb-12 flex flex-col items-center justify-center gap-4 sm:flex-row">
           <Button size="xl" variant="gradient" className="group w-full sm:w-auto gap-2" asChild>
-            <a href="#registration">
+            <a href="/register">
               <span>Start Free</span>
               <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
             </a>

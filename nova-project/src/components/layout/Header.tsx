@@ -58,12 +58,12 @@ export function Header() {
           </div>
 
           <div className="hidden md:flex md:items-center md:gap-3">
-            <Link href="#registration">
+            <Link href="/register">
               <Button variant="ghost" size="sm" className="text-slate-300 hover:text-white">
                 Register
               </Button>
             </Link>
-            <Link href="#registration">
+            <Link href="/register">
               <Button size="sm" variant="gradient" className="shadow-[0_0_20px_rgba(139,92,246,0.4)]">
                 Get Started
               </Button>
@@ -99,12 +99,12 @@ export function Header() {
               </Link>
             ))}
             <div className="flex flex-col gap-3 pt-4 border-t border-white/10">
-              <Link href="#registration" onClick={() => setIsMobileMenuOpen(false)}>
+              <Link href="/register" onClick={() => setIsMobileMenuOpen(false)}>
                 <Button variant="ghost" className="w-full justify-start">
                   Register
                 </Button>
               </Link>
-              <Link href="#registration" onClick={() => setIsMobileMenuOpen(false)}>
+              <Link href="/register" onClick={() => setIsMobileMenuOpen(false)}>
                 <Button variant="gradient" className="w-full justify-center shadow-[0_0_20px_rgba(139,92,246,0.4)]">
                   Get Started
                 </Button>
