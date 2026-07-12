@@ -52,7 +52,7 @@ export async function POST(req: NextRequest) {
   } catch (err: unknown) {
     if (err instanceof z.ZodError) {
       return NextResponse.json(
-        { error: "Validation failure", details: err.errors },
+        { error: "Validation failure", details: err.issues },
         { status: 422 }
       );
     }

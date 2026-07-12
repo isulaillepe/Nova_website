@@ -23,8 +23,7 @@ export const registrationSchema = z.object({
     .min(3, "Team name must be at least 3 characters")
     .max(100, "Team name cannot exceed 100 characters"),
   track: z.enum(["school", "university"], {
-    invalid_type_error: "Please select a competition track",
-    required_error: "Please select a competition track",
+    message: "Please select a competition track",
   }),
   members: z
     .array(memberSchema)

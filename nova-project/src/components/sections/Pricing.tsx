@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowRight, Check, Zap, Shield, Globe, Database, Code, Users, Lock, BarChart } from "lucide-react";
+import { Check, Zap, Shield, Globe, BarChart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const plans = [

@@ -79,7 +79,7 @@ export function RegistrationForm() {
   const watchedTeamName = useWatch({ control, name: "teamName" });
 
   const handleSetLeader = (index: number) => {
-    watchedMembers.forEach((_, i) => {
+    watchedMembers.forEach((_: any, i: number) => {
       setValue(`members.${i}.is_leader`, i === index);
     });
   };
@@ -372,7 +372,7 @@ export function RegistrationForm() {
               </p>
             </div>
 
-            {fields.map((field, index) => (
+            {fields.map((field: any, index: number) => (
               <div
                 key={field.id}
                 className="relative rounded-xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm transition-all hover:border-white/15"
@@ -601,7 +601,7 @@ export function RegistrationForm() {
                 Team Members ({watchedMembers.length})
               </h3>
               <div className="space-y-3">
-                {watchedMembers.map((member, index) => (
+                {watchedMembers.map((member: any, index: number) => (
                   <div
                     key={index}
                     className={`flex items-center gap-4 rounded-lg p-3 transition-all ${
