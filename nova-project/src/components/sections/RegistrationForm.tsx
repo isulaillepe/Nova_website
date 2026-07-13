@@ -62,8 +62,6 @@ export function RegistrationForm() {
       track: undefined,
       members: [
         { ...DEFAULT_MEMBER, is_leader: true },
-        { ...DEFAULT_MEMBER },
-        { ...DEFAULT_MEMBER },
       ],
     },
     mode: "onChange",
