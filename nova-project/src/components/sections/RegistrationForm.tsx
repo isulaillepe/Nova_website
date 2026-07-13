@@ -26,6 +26,8 @@ import {
   GraduationCap,
   School,
 } from "lucide-react";
+import { db } from "@/lib/firebase";
+import { collection, addDoc, getDocs, query, where, limit, serverTimestamp } from "firebase/firestore";
 
 const STEPS = [
   { id: 1, title: "Team Info", icon: Trophy },
@@ -105,16 +107,48 @@ export function RegistrationForm() {
     setServerError("");
 
     try {
-      const res = await fetch("/api/register", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
+      const teamsRef = collection(db, "teams");
 
-      const result = await res.json();
+      // Case-insensitive check for team name uniqueness
+      const formattedTeamName = data.teamName.trim();
+      const teamNameLower = formattedTeamName.toLowerCase();
+      const q = query(
+        teamsRef,
+        where("teamNameLower", "==", teamNameLower),
+        limit(1)
+      );
+      const querySnapshot = await getDocs(q);
 
-      if (!res.ok) {
-        throw new Error(result.error || "Registration failed");
+      if (!querySnapshot.empty) {
+        throw new Error("A team with this name is already registered.");
+      }
+
+      // Add document to Firestore
+      const newTeam = {
+        ...data,
+        teamNameLower,
+        createdAt: serverTimestamp(),
+      };
+      const docRef = await addDoc(teamsRef, newTeam);
+
+      // Send confirmation email via API route
+      const leader = data.members.find((m) => m.is_leader);
+      if (leader && leader.email) {
+        const memberNames = data.members.map((m) => m.fullname);
+        try {
+          await fetch("/api/send-email", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              email: leader.email,
+              teamName: data.teamName,
+              memberNames,
+            }),
+          });
+        } catch (emailErr) {
+          console.warn("Email sending failed:", emailErr);
+          // Don't fail registration if email fails
+        }
       }
 
       setSubmitStatus("success");
