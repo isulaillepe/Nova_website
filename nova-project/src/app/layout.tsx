@@ -15,6 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://projectnova.lk"),
   title: "Project Nova - AIESEC in University of Sri Jayewardenepura",
   description: "A dynamic tech-based event designed for school and university students, creating a platform where innovation meets opportunity. Organized by AIESEC in University of Sri Jayewardenepura.",
   keywords: ["Project Nova", "AIESEC", "Sri Jayewardenepura", "tech competition", "student innovation", "youth leadership", "Sri Lanka tech event"],

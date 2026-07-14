@@ -4,24 +4,24 @@ import { FaGithub, FaTwitter, FaLinkedin, FaInstagram, FaYoutube } from "react-i
 
 const footerLinks = {
   projectNova: [
-    { label: "About Nova", href: "#about" },
-    { label: "Timeline", href: "#timeline" },
-    { label: "Prize Pool", href: "#prizes" },
-    { label: "Organizing Committee", href: "#committee" },
-    { label: "Corporate Partners", href: "#partners" },
+    { label: "About Nova", href: "/#about" },
+    { label: "Timeline", href: "/#timeline" },
+    { label: "Prize Pool", href: "/#prizes" },
+    { label: "Organizing Committee", href: "/#committee" },
+    { label: "Corporate Partners", href: "/#partners" },
   ],
   competition: [
     { label: "School Track", href: "/register?track=school" },
     { label: "University Track", href: "/register?track=university" },
     { label: "Registration", href: "/register" },
-    { label: "FAQ", href: "#committee" },
-    { label: "Rules & Guidelines", href: "#rules" },
+    { label: "FAQ", href: "/#committee" },
+    { label: "Rules & Guidelines", href: "/#rules" },
   ],
   partners: [
-    { label: "Become a Partner", href: "#partners" },
-    { label: "Long Term Partners", href: "#partners" },
-    { label: "Partner Benefits", href: "#partners" },
-    { label: "Contact Us", href: "#contact" },
+    { label: "Become a Partner", href: "/#partners" },
+    { label: "Long Term Partners", href: "/#partners" },
+    { label: "Partner Benefits", href: "/#partners" },
+    { label: "Contact Us", href: "/#contact" },
   ],
   aiesec: [
     { label: "AIESEC in USJ", href: "https://aiesec.org" },
@@ -113,8 +113,8 @@ export function Footer() {
           <div>
             <h3 className="font-semibold text-white">Partners</h3>
             <ul className="mt-4 space-y-3">
-              {footerLinks.partners.map((link) => (
-                <li key={link.href}>
+              {footerLinks.partners.map((link, index) => (
+                <li key={`${link.href}-${index}`}>
                   <Link
                     href={link.href}
                     className="text-sm text-slate-400 transition-colors hover:text-violet-300"

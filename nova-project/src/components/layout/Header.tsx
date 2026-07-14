@@ -18,11 +18,11 @@ export function Header() {
   }, []);
 
   const navLinks = [
-    { href: "#hero", label: "Home" },
-    { href: "#timeline", label: "Timeline" },
-    { href: "#prizes", label: "Prizes" },
-    { href: "#committee", label: "Committee" },
-    { href: "#partners", label: "Partners" },
+    { href: "/#hero", label: "Home" },
+    { href: "/#timeline", label: "Timeline" },
+    { href: "/#prizes", label: "Prizes" },
+    { href: "/#committee", label: "Committee" },
+    { href: "/#partners", label: "Partners" },
   ];
 
   return (
