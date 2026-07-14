@@ -6,10 +6,11 @@ import { Testimonials } from "@/components/sections/Testimonials";
 import { Partners } from "@/components/sections/Partners";
 import { CTA } from "@/components/sections/CTA";
 import { Footer } from "@/components/layout/Footer";
+import { HorizontalScrollContainer } from "@/components/HorizontalScrollContainer";
 
 export default function Home() {
   return (
-    <main className="flex flex-row min-h-screen snap-x snap-mandatory overflow-x-auto scrollbar-hide">
+    <HorizontalScrollContainer>
       <Hero />
       <Stats />
       <Features />
@@ -18,6 +19,6 @@ export default function Home() {
       <Partners />
       <CTA />
       <Footer />
-    </main>
+    </HorizontalScrollContainer>
   );
 }
