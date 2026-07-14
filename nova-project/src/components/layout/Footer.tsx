@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import { Mail, MapPin, Phone } from "lucide-react";
 import { FaGithub, FaTwitter, FaLinkedin, FaInstagram, FaYoutube } from "react-icons/fa";
@@ -46,13 +48,34 @@ const contactInfo = [
   { icon: Phone, label: "+1 (555) 123-4567", href: "tel:+15551234567" },
 ];
 
+// Sections that exist in the horizontal scroll
+const horizontalSections = ["hero", "features", "about", "testimonials", "partners", "cta"];
+
+const scrollToSection = (sectionId: string) => {
+  const element = document.getElementById(sectionId);
+  if (element) {
+    element.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+  }
+};
+
+const handleFooterLinkClick = (href: string, e: React.MouseEvent<HTMLAnchorElement>) => {
+  const sectionId = href.replace("#", "");
+  if (horizontalSections.includes(sectionId)) {
+    e.preventDefault();
+    scrollToSection(sectionId);
+  }
+};
+
 export function Footer() {
   return (
-    <footer className="relative border-t border-white/10 bg-slate-950/50 backdrop-blur-sm">
-      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 xl:px-10">
+    <footer
+      id="footer"
+      className="relative min-h-screen min-w-screen w-screen snap-center flex flex-col items-center justify-start py-16 bg-slate-950/50 backdrop-blur-sm border-t border-white/10"
+    >
+      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 xl:px-10 w-full">
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-6">
           <div className="lg:col-span-2">
-            <Link href="/" className="flex items-center gap-2 font-bold text-xl text-white">
+            <Link href="#" onClick={(e) => { e.preventDefault(); scrollToSection("hero"); }} className="flex items-center gap-2 font-bold text-xl text-white">
               <span className="relative flex h-8 w-8 items-center justify-center rounded-xl bg-gradient-to-br from-violet-600 to-indigo-600">
                 <span className="text-white font-black text-lg">N</span>
                 <span className="absolute inset-0 -translate-y-0.5 bg-gradient-to-br from-violet-400 to-indigo-400 opacity-50 rounded-xl" />
@@ -86,7 +109,8 @@ export function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm text-slate-400 transition-colors hover:text-violet-300"
+                    onClick={(e) => handleFooterLinkClick(link.href, e)}
+                    className="text-sm text-slate-400 transition-colors hover:text-violet-300 cursor-pointer"
                   >
                     {link.label}
                   </Link>
@@ -102,7 +126,8 @@ export function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm text-slate-400 transition-colors hover:text-violet-300"
+                    onClick={(e) => handleFooterLinkClick(link.href, e)}
+                    className="text-sm text-slate-400 transition-colors hover:text-violet-300 cursor-pointer"
                   >
                     {link.label}
                   </Link>
@@ -118,7 +143,8 @@ export function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm text-slate-400 transition-colors hover:text-violet-300"
+                    onClick={(e) => handleFooterLinkClick(link.href, e)}
+                    className="text-sm text-slate-400 transition-colors hover:text-violet-300 cursor-pointer"
                   >
                     {link.label}
                   </Link>
@@ -134,7 +160,8 @@ export function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm text-slate-400 transition-colors hover:text-violet-300"
+                    onClick={(e) => handleFooterLinkClick(link.href, e)}
+                    className="text-sm text-slate-400 transition-colors hover:text-violet-300 cursor-pointer"
                   >
                     {link.label}
                   </Link>

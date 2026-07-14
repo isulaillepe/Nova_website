@@ -12,14 +12,17 @@ const benefits = [
 
 export function CTA() {
   return (
-    <section id="cta" className="relative py-20 sm:py-28 lg:py-32 bg-slate-950 overflow-hidden">
+    <section
+      id="cta"
+      className="relative min-h-screen min-w-screen w-screen snap-center flex flex-col items-center justify-center py-20 sm:py-28 lg:py-32 bg-slate-950 overflow-hidden"
+    >
       <div className="absolute inset-0 -z-10" aria-hidden="true">
         <div className="absolute top-1/2 left-1/2 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-br from-violet-600/15 to-transparent blur-3xl" />
         <div className="absolute top-0 right-0 h-96 w-96 rounded-full bg-gradient-to-bl from-indigo-600/10 to-transparent blur-3xl" />
         <div className="absolute bottom-0 left-0 h-96 w-96 rounded-full bg-gradient-to-tr from-cyan-600/10 to-transparent blur-3xl" />
       </div>
 
-      <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
+      <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center w-full">
         <div className="mb-8 flex items-center justify-center gap-2">
           <span className="relative inline-flex items-center gap-1.5 rounded-full bg-violet-600/20 px-3 py-1 text-xs font-medium text-violet-300">
             <span className="h-1.5 w-1.5 rounded-full bg-violet-400 animate-pulse" />

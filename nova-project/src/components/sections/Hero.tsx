@@ -12,15 +12,18 @@ const stats = [
 
 export function Hero() {
   return (
-    <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-slate-950">
+    <section
+      id="hero"
+      className="relative min-h-screen min-w-screen w-screen snap-center flex items-center justify-center overflow-hidden bg-slate-950"
+    >
       <div className="absolute inset-0 -z-10" aria-hidden="true">
         <div className="absolute top-1/4 left-1/4 h-[600px] w-[600px] rounded-full bg-gradient-to-br from-violet-600/20 to-transparent blur-3xl" />
         <div className="absolute bottom-1/4 right-1/4 h-[500px] w-[500px] rounded-full bg-gradient-to-br from-indigo-600/20 to-transparent blur-3xl" />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[800px] w-[800px] rounded-full bg-gradient-to-r from-violet-600/10 to-indigo-600/10 blur-3xl" />
       </div>
 
-      <div className="relative mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 xl:px-10">
-        <div className="text-center">
+      <div className="relative mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 xl:px-10 w-full">
+        <div className="text-center w-full">
           <div className="mb-8 flex flex-wrap items-center justify-center gap-2">
             <span className="flex items-center gap-1.5 rounded-full bg-violet-600/20 px-3 py-1 text-xs font-medium text-violet-300">
               <Sparkles className="h-3 w-3" aria-hidden="true" />

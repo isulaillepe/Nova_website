@@ -58,8 +58,8 @@ const trustIndicators = [
 
 export function Stats() {
   return (
-    <section className="relative py-16 sm:py-20 bg-slate-900/50 border-y border-white/10">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section className="relative min-h-screen min-w-screen w-screen snap-center flex items-center justify-center py-16 sm:py-20 bg-slate-900/50 border-y border-white/10">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full">
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
           {stats.map((stat) => (
             <div

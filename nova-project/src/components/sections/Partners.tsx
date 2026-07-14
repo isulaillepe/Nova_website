@@ -32,8 +32,11 @@ const integrations = [
 
 export function Partners() {
   return (
-    <section id="partners" className="py-20 sm:py-28 bg-slate-950 border-t border-white/5">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section
+      id="partners"
+      className="relative min-h-screen min-w-screen w-screen snap-center flex flex-col items-center justify-center py-20 sm:py-28 bg-slate-950 border-t border-white/5"
+    >
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full">
         <div className="mb-16 text-center">
           <div className="mb-4 flex items-center justify-center gap-2">
             <span className="inline-flex items-center gap-1.5 rounded-full bg-violet-600/20 px-3 py-1 text-xs font-medium text-violet-300">
