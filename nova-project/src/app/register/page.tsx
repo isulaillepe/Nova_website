@@ -2,8 +2,9 @@ import { RegistrationForm } from "@/components/sections/RegistrationForm";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Register for Nova Hackathon",
-  description: "Register your team for the upcoming Nova Hackathon. Join 500,000+ developers building the future.",
+  title: "Register - Project Nova",
+  description: "Register your team for Project Nova - A dynamic tech-based event for school and university students organized by AIESEC in University of Sri Jayewardenepura.",
+  keywords: ["Project Nova", "register", "team registration", "AIESEC", "Sri Jayewardenepura", "tech competition"],
 };
 
 export default function RegisterPage() {

@@ -1,90 +1,66 @@
-"use client";
-
 import Link from "next/link";
 import { Mail, MapPin, Phone } from "lucide-react";
 import { FaGithub, FaTwitter, FaLinkedin, FaInstagram, FaYoutube } from "react-icons/fa";
 
 const footerLinks = {
-  product: [
-    { label: "Features", href: "#features" },
-    { label: "Pricing", href: "#pricing" },
-    { label: "Integrations", href: "#integrations" },
-    { label: "Changelog", href: "#changelog" },
-    { label: "Roadmap", href: "#roadmap" },
+  projectNova: [
+    { label: "About Nova", href: "#about" },
+    { label: "Timeline", href: "#timeline" },
+    { label: "Prize Pool", href: "#prizes" },
+    { label: "Organizing Committee", href: "#committee" },
+    { label: "Corporate Partners", href: "#partners" },
   ],
-  company: [
-    { label: "About", href: "#about" },
-    { label: "Blog", href: "#blog" },
-    { label: "Careers", href: "#careers" },
-    { label: "Press", href: "#press" },
-    { label: "Contact", href: "#contact" },
+  competition: [
+    { label: "School Track", href: "/register?track=school" },
+    { label: "University Track", href: "/register?track=university" },
+    { label: "Registration", href: "/register" },
+    { label: "FAQ", href: "#committee" },
+    { label: "Rules & Guidelines", href: "#rules" },
   ],
-  resources: [
-    { label: "Documentation", href: "#docs" },
-    { label: "Help Center", href: "#help" },
-    { label: "Community", href: "#community" },
-    { label: "API Reference", href: "#api" },
-    { label: "Status", href: "#status" },
+  partners: [
+    { label: "Become a Partner", href: "#partners" },
+    { label: "Long Term Partners", href: "#partners" },
+    { label: "Partner Benefits", href: "#partners" },
+    { label: "Contact Us", href: "#contact" },
   ],
-  legal: [
-    { label: "Privacy", href: "#privacy" },
-    { label: "Terms", href: "#terms" },
-    { label: "Cookie Policy", href: "#cookies" },
-    { label: "Security", href: "#security" },
+  aiesec: [
+    { label: "AIESEC in USJ", href: "https://aiesec.org" },
+    { label: "Global Volunteer", href: "https://aiesec.org/global-volunteer" },
+    { label: "Global Talent", href: "https://aiesec.org/global-talent" },
+    { label: "Global Teacher", href: "https://aiesec.org/global-teacher" },
   ],
 };
 
 const socialLinks = [
-  { icon: FaTwitter, href: "https://twitter.com/nova", label: "Twitter" },
-  { icon: FaGithub, href: "https://github.com/nova", label: "GitHub" },
-  { icon: FaLinkedin, href: "https://linkedin.com/company/nova", label: "LinkedIn" },
-  { icon: FaInstagram, href: "https://instagram.com/nova", label: "Instagram" },
-  { icon: FaYoutube, href: "https://youtube.com/nova", label: "YouTube" },
+  { icon: FaTwitter, href: "https://twitter.com/aiesecusj", label: "Twitter" },
+  { icon: FaGithub, href: "https://github.com/aiesecusj", label: "GitHub" },
+  { icon: FaLinkedin, href: "https://linkedin.com/company/aiesecusj", label: "LinkedIn" },
+  { icon: FaInstagram, href: "https://instagram.com/aiesecusj", label: "Instagram" },
+  { icon: FaYoutube, href: "https://youtube.com/@aiesecusj", label: "YouTube" },
 ];
 
 const contactInfo = [
-  { icon: Mail, label: "hello@nova.io", href: "mailto:hello@nova.io" },
-  { icon: MapPin, label: "San Francisco, CA", href: "#" },
-  { icon: Phone, label: "+1 (555) 123-4567", href: "tel:+15551234567" },
+  { icon: Mail, label: "projectnova@aiesec.net", href: "mailto:projectnova@aiesec.net" },
+  { icon: MapPin, label: "University of Sri Jayewardenepura, Sri Lanka", href: "#" },
+  { icon: Phone, label: "+94 77 081 2900", href: "tel:+94770812900" },
 ];
-
-// Sections that exist in the horizontal scroll
-const horizontalSections = ["hero", "features", "about", "testimonials", "partners", "cta"];
-
-const scrollToSection = (sectionId: string) => {
-  const element = document.getElementById(sectionId);
-  if (element) {
-    element.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
-  }
-};
-
-const handleFooterLinkClick = (href: string, e: React.MouseEvent<HTMLAnchorElement>) => {
-  const sectionId = href.replace("#", "");
-  if (horizontalSections.includes(sectionId)) {
-    e.preventDefault();
-    scrollToSection(sectionId);
-  }
-};
 
 export function Footer() {
   return (
-    <footer
-      id="footer"
-      className="relative min-h-screen min-w-screen w-screen snap-center flex flex-col items-center justify-start py-16 bg-slate-950/50 backdrop-blur-sm border-t border-white/10"
-    >
-      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 xl:px-10 w-full">
+    <footer className="relative border-t border-white/10 bg-slate-950/50 backdrop-blur-sm">
+      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 xl:px-10">
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-6">
           <div className="lg:col-span-2">
-            <Link href="#" onClick={(e) => { e.preventDefault(); scrollToSection("hero"); }} className="flex items-center gap-2 font-bold text-xl text-white">
+            <Link href="/" className="flex items-center gap-2 font-bold text-xl text-white">
               <span className="relative flex h-8 w-8 items-center justify-center rounded-xl bg-gradient-to-br from-violet-600 to-indigo-600">
                 <span className="text-white font-black text-lg">N</span>
                 <span className="absolute inset-0 -translate-y-0.5 bg-gradient-to-br from-violet-400 to-indigo-400 opacity-50 rounded-xl" />
               </span>
-              Nova
+              Project Nova
             </Link>
             <p className="mt-4 max-w-xs text-slate-400 text-sm leading-relaxed">
-              Building the future of innovation with cutting-edge technology solutions.
-              Empowering developers and creators worldwide.
+              A dynamic tech-based event designed for school and university students, creating a platform
+              where innovation meets opportunity. Organized by AIESEC in University of Sri Jayewardenepura.
             </p>
             <div className="mt-6 flex gap-4">
               {socialLinks.map((social) => (
@@ -103,14 +79,13 @@ export function Footer() {
           </div>
 
           <div>
-            <h3 className="font-semibold text-white">Product</h3>
+            <h3 className="font-semibold text-white">Project Nova</h3>
             <ul className="mt-4 space-y-3">
-              {footerLinks.product.map((link) => (
+              {footerLinks.projectNova.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    onClick={(e) => handleFooterLinkClick(link.href, e)}
-                    className="text-sm text-slate-400 transition-colors hover:text-violet-300 cursor-pointer"
+                    className="text-sm text-slate-400 transition-colors hover:text-violet-300"
                   >
                     {link.label}
                   </Link>
@@ -120,14 +95,13 @@ export function Footer() {
           </div>
 
           <div>
-            <h3 className="font-semibold text-white">Company</h3>
+            <h3 className="font-semibold text-white">Competition</h3>
             <ul className="mt-4 space-y-3">
-              {footerLinks.company.map((link) => (
+              {footerLinks.competition.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    onClick={(e) => handleFooterLinkClick(link.href, e)}
-                    className="text-sm text-slate-400 transition-colors hover:text-violet-300 cursor-pointer"
+                    className="text-sm text-slate-400 transition-colors hover:text-violet-300"
                   >
                     {link.label}
                   </Link>
@@ -137,14 +111,13 @@ export function Footer() {
           </div>
 
           <div>
-            <h3 className="font-semibold text-white">Resources</h3>
+            <h3 className="font-semibold text-white">Partners</h3>
             <ul className="mt-4 space-y-3">
-              {footerLinks.resources.map((link) => (
+              {footerLinks.partners.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    onClick={(e) => handleFooterLinkClick(link.href, e)}
-                    className="text-sm text-slate-400 transition-colors hover:text-violet-300 cursor-pointer"
+                    className="text-sm text-slate-400 transition-colors hover:text-violet-300"
                   >
                     {link.label}
                   </Link>
@@ -154,14 +127,15 @@ export function Footer() {
           </div>
 
           <div>
-            <h3 className="font-semibold text-white">Legal</h3>
+            <h3 className="font-semibold text-white">AIESEC</h3>
             <ul className="mt-4 space-y-3">
-              {footerLinks.legal.map((link) => (
+              {footerLinks.aiesec.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    onClick={(e) => handleFooterLinkClick(link.href, e)}
-                    className="text-sm text-slate-400 transition-colors hover:text-violet-300 cursor-pointer"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm text-slate-400 transition-colors hover:text-violet-300"
                   >
                     {link.label}
                   </Link>
@@ -173,7 +147,7 @@ export function Footer() {
 
         <div className="mt-12 flex flex-col items-center justify-between gap-6 border-t border-white/10 pt-8 md:flex-row">
           <p className="text-sm text-slate-500">
-            © {new Date().getFullYear()} Nova. All rights reserved.
+            © {new Date().getFullYear()} Project Nova - AIESEC in University of Sri Jayewardenepura. All rights reserved.
           </p>
 
           <div className="flex flex-wrap items-center justify-center gap-4 text-sm text-slate-500">

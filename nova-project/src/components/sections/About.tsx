@@ -37,16 +37,13 @@ const milestones = [
 
 export function About() {
   return (
-    <section
-      id="about"
-      className="relative min-h-screen min-w-screen w-screen snap-center flex flex-col items-center justify-center py-20 sm:py-28 lg:py-32 bg-slate-950 overflow-hidden"
-    >
+    <section id="about" className="relative py-20 sm:py-28 lg:py-32 bg-slate-950 overflow-hidden">
       <div className="absolute inset-0 -z-10" aria-hidden="true">
         <div className="absolute top-0 right-0 h-[600px] w-[600px] rounded-full bg-gradient-to-bl from-violet-600/10 to-transparent blur-3xl" />
         <div className="absolute bottom-0 left-0 h-[500px] w-[500px] rounded-full bg-gradient-to-tr from-indigo-600/10 to-transparent blur-3xl" />
       </div>
 
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mb-16 grid gap-12 lg:grid-cols-2">
           <div>
             <div className="mb-6 flex items-center gap-2">
@@ -143,8 +140,8 @@ export function About() {
               {milestones.map((milestone, index) => (
                 <div
                   key={milestone.year}
-                  className="relative flex gap-6"
-                  style={{ "--index": index } as React.CSSProperties}
+                  className="relative flex gap-6 animate-in fade-in slide-in-from-left-4 fill-mode-both"
+                  style={{ animationDelay: `${index * 100}ms` } as React.CSSProperties}
                 >
                   <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-violet-600 text-white font-bold text-lg z-10">
                     {index + 1}

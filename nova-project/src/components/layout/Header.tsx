@@ -5,13 +5,6 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Sparkles } from "lucide-react";
 
-const scrollToSection = (sectionId: string) => {
-  const element = document.getElementById(sectionId);
-  if (element) {
-    element.scrollIntoView({ behavior: "smooth", inline: "center" });
-  }
-};
-
 export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
   const [isScrolled, setIsScrolled] = React.useState(false);
@@ -25,12 +18,11 @@ export function Header() {
   }, []);
 
   const navLinks = [
-    { id: "hero", label: "Home" },
-    { id: "features", label: "Features" },
-    { id: "about", label: "About" },
-    { id: "testimonials", label: "Testimonials" },
-    { id: "partners", label: "Partners" },
-    { id: "cta", label: "Get Started" },
+    { href: "#hero", label: "Home" },
+    { href: "#timeline", label: "Timeline" },
+    { href: "#prizes", label: "Prizes" },
+    { href: "#committee", label: "Committee" },
+    { href: "#partners", label: "Partners" },
   ];
 
   return (
@@ -43,15 +35,7 @@ export function Header() {
     >
       <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8" aria-label="Main navigation">
         <div className="flex h-16 items-center justify-between">
-          <Link
-            href="#"
-            onClick={(e) => {
-              e.preventDefault();
-              scrollToSection("hero");
-            }}
-            className="flex items-center gap-2"
-            aria-label="Project Nova Home"
-          >
+          <Link href="#hero" className="flex items-center gap-2" aria-label="Project Nova Home">
             <div className="relative flex h-9 w-9 items-center justify-center">
               <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-violet-600 via-indigo-600 to-blue-600 opacity-20 blur-xl" />
               <Sparkles className="relative h-6 w-6 text-white drop-shadow-[0_0_8px_rgba(139,92,246,0.6)]" />
@@ -63,13 +47,13 @@ export function Header() {
 
           <div className="hidden md:flex md:items-center md:gap-8">
             {navLinks.map((link) => (
-              <button
-                key={link.id}
-                onClick={() => scrollToSection(link.id)}
-                className="text-sm font-medium text-slate-300 transition-colors hover:text-violet-300 cursor-pointer"
+              <Link
+                key={link.href}
+                href={link.href}
+                className="text-sm font-medium text-slate-300 transition-colors hover:text-violet-300"
               >
                 {link.label}
-              </button>
+              </Link>
             ))}
           </div>
 
@@ -105,16 +89,14 @@ export function Header() {
         >
           <div className="flex flex-col gap-4 pt-4">
             {navLinks.map((link) => (
-              <button
-                key={link.id}
-                onClick={() => {
-                  scrollToSection(link.id);
-                  setIsMobileMenuOpen(false);
-                }}
-                className="text-base font-medium text-slate-300 hover:text-violet-300 transition-colors text-left"
+              <Link
+                key={link.href}
+                href={link.href}
+                className="text-base font-medium text-slate-300 hover:text-violet-300 transition-colors"
+                onClick={() => setIsMobileMenuOpen(false)}
               >
                 {link.label}
-              </button>
+              </Link>
             ))}
             <div className="flex flex-col gap-3 pt-4 border-t border-white/10">
               <Link href="/register" onClick={() => setIsMobileMenuOpen(false)}>

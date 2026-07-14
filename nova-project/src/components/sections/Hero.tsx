@@ -1,54 +1,45 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Sparkles, Zap } from "lucide-react";
-
-const stats = [
-  { value: "50K+", label: "Active Developers" },
-  { value: "99.9%", label: "Uptime Guarantee" },
-  { value: "200+", label: "Integrations" },
-  { value: "24/7", label: "Support Team" },
-];
+import { ArrowRight, Sparkles, Zap, Trophy, Users, Calendar, ChevronDown } from "lucide-react";
 
 export function Hero() {
   return (
-    <section
-      id="hero"
-      className="relative min-h-screen min-w-screen w-screen snap-center flex items-center justify-center overflow-hidden bg-slate-950"
-    >
+    <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-slate-950">
       <div className="absolute inset-0 -z-10" aria-hidden="true">
         <div className="absolute top-1/4 left-1/4 h-[600px] w-[600px] rounded-full bg-gradient-to-br from-violet-600/20 to-transparent blur-3xl" />
         <div className="absolute bottom-1/4 right-1/4 h-[500px] w-[500px] rounded-full bg-gradient-to-br from-indigo-600/20 to-transparent blur-3xl" />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[800px] w-[800px] rounded-full bg-gradient-to-r from-violet-600/10 to-indigo-600/10 blur-3xl" />
       </div>
 
-      <div className="relative mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 xl:px-10 w-full">
-        <div className="text-center w-full">
+      <div className="relative mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 xl:px-10">
+        <div className="text-center">
           <div className="mb-8 flex flex-wrap items-center justify-center gap-2">
             <span className="flex items-center gap-1.5 rounded-full bg-violet-600/20 px-3 py-1 text-xs font-medium text-violet-300">
               <Sparkles className="h-3 w-3" aria-hidden="true" />
-              <span>Nova v3.0 Released</span>
+              <span>Project Nova - AIESEC in University of Sri Jayewardenepura</span>
             </span>
             <span className="flex items-center gap-1.5 rounded-full bg-emerald-600/20 px-3 py-1 text-xs font-medium text-emerald-300">
               <Zap className="h-3 w-3" aria-hidden="true" />
-              <span>10x Faster</span>
+              <span>Tech Innovation Challenge</span>
             </span>
           </div>
 
           <h1 className="mb-6 text-4xl font-bold tracking-tight text-white sm:text-5xl md:text-6xl lg:text-7xl">
             <span className="bg-gradient-to-r from-white via-slate-200 to-white bg-clip-text text-transparent">
-              Build the Future
+              Innovation Meets
             </span>
             <br />
             <span className="bg-gradient-to-r from-violet-400 via-indigo-400 to-cyan-400 bg-clip-text text-transparent">
-              with Nova
+              Opportunity
             </span>
           </h1>
 
           <p className="mb-10 max-w-3xl mx-auto text-lg text-slate-300 sm:text-xl">
-            The complete platform for modern application development. Deploy, scale, and
-            manage your applications with confidence on infrastructure trusted by
-            innovative teams worldwide.
+            A dynamic tech-based event designed for school and university students, creating a platform
+            where innovation meets opportunity. Organized by AIESEC in University of Sri Jayewardenepura,
+            it connects passionate young minds with forward-thinking organizations looking to engage
+            with the next generation.
           </p>
 
           <div className="mb-16 flex flex-wrap items-center justify-center gap-4">
@@ -57,9 +48,9 @@ export function Hero() {
               className="group relative overflow-hidden bg-gradient-to-r from-violet-600 to-indigo-600 px-8 py-3 text-base font-semibold text-white shadow-[0_0_30px_rgba(139,92,246,0.4)] hover:shadow-[0_0_40px_rgba(139,92,246,0.5)] transition-all duration-300 before:absolute before:inset-0 before:bg-gradient-to-r before:from-indigo-600 before:to-violet-600 before:opacity-0 before:transition-opacity group-hover:before:opacity-100"
               asChild
             >
-              <a href="#get-started">
+              <a href="/register">
                 <span className="relative flex items-center gap-2">
-                  Get Started Free
+                  Register Now
                   <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" aria-hidden="true" />
                 </span>
               </a>
@@ -70,17 +61,35 @@ export function Hero() {
               className="bg-white/5 border-white/10 text-white hover:bg-white/10 hover:border-white/20 px-8 py-3 text-base font-semibold"
               asChild
             >
-              <a href="#demo">Watch Demo</a>
+              <a href="#timeline">
+                Learn More
+                <ChevronDown className="ml-2 h-5 w-5 transition-transform" />
+              </a>
             </Button>
           </div>
 
           <div className="flex flex-wrap items-center justify-center gap-8 text-sm text-slate-500">
-            {stats.map((stat) => (
-              <div key={stat.label} className="flex flex-col items-center gap-1">
-                <div className="font-bold text-2xl text-white sm:text-3xl">{stat.value}</div>
-                <div className="text-slate-400">{stat.label}</div>
+            <div className="flex flex-col items-center gap-1">
+              <div className="flex items-center gap-1.5 font-bold text-2xl text-white sm:text-3xl">
+                <Trophy className="h-6 w-6 text-amber-400" />
+                <span>LKR 75,000</span>
               </div>
-            ))}
+              <div className="text-slate-400">First Prize</div>
+            </div>
+            <div className="flex flex-col items-center gap-1">
+              <div className="flex items-center gap-1.5 font-bold text-2xl text-white sm:text-3xl">
+                <Users className="h-6 w-6 text-violet-400" />
+                <span>School & Uni</span>
+              </div>
+              <div className="text-slate-400">Participants</div>
+            </div>
+            <div className="flex flex-col items-center gap-1">
+              <div className="flex items-center gap-1.5 font-bold text-2xl text-white sm:text-3xl">
+                <Calendar className="h-6 w-6 text-emerald-400" />
+                <span>2 Phases</span>
+              </div>
+              <div className="text-slate-400">Competition</div>
+            </div>
           </div>
         </div>
 
@@ -94,30 +103,25 @@ export function Hero() {
                   <div className="h-3 w-3 rounded-full bg-green-500" />
                 </div>
                 <div className="flex-1 text-center text-xs text-slate-500 font-mono">
-                  dashboard.nova.app
+                  Project Nova Event Timeline
                 </div>
               </div>
               <div className="space-y-3 font-mono text-sm">
-                <div className="flex gap-4 text-slate-300">
-                  <span className="text-violet-400">$</span>
-                  <span className="text-emerald-400">nova deploy</span>
-                  <span className="text-cyan-400">--prod</span>
-                  <span className="text-amber-400">--region</span>
-                  <span className="text-slate-400">us-east-1</span>
+                <div className="flex flex-wrap items-center justify-center gap-4 text-slate-300">
+                  <span className="text-violet-400">01</span>
+                  <span className="text-emerald-400">Registration of Teams</span>
+                  <span className="text-cyan-400">02</span>
+                  <span className="text-amber-400">Proposal Submission</span>
+                  <span className="text-slate-400">03</span>
+                  <span className="text-slate-400">Reviewing Proposals</span>
                 </div>
-                <div className="grid grid-cols-3 gap-4 text-slate-400 border-t border-white/10 pt-4">
-                  <div>
-                    <div className="text-2xl font-bold text-white">2.3s</div>
-                    <div className="text-xs">Deploy Time</div>
-                  </div>
-                  <div>
-                    <div className="text-2xl font-bold text-white">99.99%</div>
-                    <div className="text-xs">Success Rate</div>
-                  </div>
-                  <div>
-                    <div className="text-2xl font-bold text-white">0ms</div>
-                    <div className="text-xs">Cold Start</div>
-                  </div>
+                <div className="flex flex-wrap items-center justify-center gap-4 text-slate-300">
+                  <span className="text-violet-400">04</span>
+                  <span className="text-emerald-400">Workshops for Selected Teams</span>
+                  <span className="text-cyan-400">05</span>
+                  <span className="text-amber-400">Implementation of Projects</span>
+                  <span className="text-slate-400">06</span>
+                  <span className="text-slate-400">Final Event Day</span>
                 </div>
               </div>
             </div>

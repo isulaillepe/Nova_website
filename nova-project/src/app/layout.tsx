@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
+import { Footer } from "@/components/layout/Footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -14,35 +15,35 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Nova - Build, Deploy, Scale",
-  description: "The complete platform for modern application development. Deploy, scale, and manage your applications with confidence on infrastructure trusted by innovative teams worldwide.",
-  keywords: ["cloud platform", "edge computing", "serverless", "deployment", "database", "developer tools"],
-  authors: [{ name: "Nova" }],
-  creator: "Nova",
-  publisher: "Nova",
+  title: "Project Nova - AIESEC in University of Sri Jayewardenepura",
+  description: "A dynamic tech-based event designed for school and university students, creating a platform where innovation meets opportunity. Organized by AIESEC in University of Sri Jayewardenepura.",
+  keywords: ["Project Nova", "AIESEC", "Sri Jayewardenepura", "tech competition", "student innovation", "youth leadership", "Sri Lanka tech event"],
+  authors: [{ name: "AIESEC in University of Sri Jayewardenepura" }],
+  creator: "AIESEC in University of Sri Jayewardenepura",
+  publisher: "Project Nova",
   robots: "index, follow",
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://nova.io",
-    title: "Nova - Build, Deploy, Scale",
-    description: "The complete platform for modern application development.",
-    siteName: "Nova",
+    url: "https://projectnova.lk",
+    title: "Project Nova - Innovation Meets Opportunity",
+    description: "A dynamic tech-based event for school and university students connecting passionate young minds with forward-thinking organizations.",
+    siteName: "Project Nova",
     images: [
       {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Nova Platform",
+        alt: "Project Nova - AIESEC in University of Sri Jayewardenepura",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Nova - Build, Deploy, Scale",
-    description: "The complete platform for modern application development.",
+    title: "Project Nova - Innovation Meets Opportunity",
+    description: "A dynamic tech-based event for school and university students connecting passionate young minds with forward-thinking organizations.",
     images: ["/og-image.png"],
-    creator: "@nova",
+    creator: "@aiesec_usj",
   },
   icons: {
     icon: "/favicon.ico",
@@ -69,9 +70,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col bg-slate-950 text-slate-50 overflow-x-auto overflow-y-hidden">
+      <body className="min-h-full flex flex-col bg-slate-950 text-slate-50">
         <Header />
         <main className="flex-1">{children}</main>
+        <Footer />
       </body>
     </html>
   );

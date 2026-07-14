@@ -1,118 +1,218 @@
 "use client";
 
-const partners = [
-  { name: "Vercel", logo: "vercel", category: "Platform" },
-  { name: "Linear", logo: "linear", category: "Productivity" },
-  { name: "Notion", logo: "notion", category: "Productivity" },
-  { name: "Figma", logo: "figma", category: "Design" },
-  { name: "Stripe", logo: "stripe", category: "Payments" },
-  { name: "GitHub", logo: "github", category: "Development" },
-  { name: "OpenAI", logo: "openai", category: "AI" },
-  { name: "Anthropic", logo: "anthropic", category: "AI" },
-  { name: "Supabase", logo: "supabase", category: "Database" },
-  { name: "Prisma", logo: "prisma", category: "Database" },
-  { name: "Tailwind", logo: "tailwind", category: "CSS" },
-  { name: "Next.js", logo: "nextjs", category: "Framework" },
+import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import {
+  Heart,
+  Building2,
+  Sparkles,
+  BookOpen,
+  HeartPulse,
+  Truck,
+  Plane,
+  Utensils,
+  Zap,
+  Cookie,
+  Award,
+} from "lucide-react";
+
+const longTermPartners = [
+  {
+    name: "Ceylinco Life",
+    description: "Dedicated to nurturing future leaders through a relationship for life",
+    icon: Heart,
+    iconColor: "text-red-400",
+    bgColor: "bg-red-500/20",
+    category: "Insurance",
+  },
+  {
+    name: "Baurs",
+    description: "Providing proven trust since 1897 with corporate sustainability baked directly into their core mission",
+    icon: Building2,
+    iconColor: "text-blue-400",
+    bgColor: "bg-blue-500/20",
+    category: "Conglomerate",
+  },
+  {
+    name: "Emerald",
+    description: "Ensuring top-tier corporate styling and strategic presence across all platforms",
+    icon: Sparkles,
+    iconColor: "text-emerald-400",
+    bgColor: "bg-emerald-500/20",
+    category: "Branding",
+  },
+  {
+    name: "readamaze",
+    description: "Supporting continuous digital literacy and reading frameworks for youth development",
+    icon: BookOpen,
+    iconColor: "text-violet-400",
+    bgColor: "bg-violet-500/20",
+    category: "Education",
+  },
+  {
+    name: "George Steuart Health",
+    description: "Encouraging delegates and future professionals to live well",
+    icon: HeartPulse,
+    iconColor: "text-green-400",
+    bgColor: "bg-green-500/20",
+    category: "Healthcare",
+  },
+  {
+    name: "Uber",
+    description: "Powering seamless connectivity and modern technological access",
+    icon: Truck,
+    iconColor: "text-slate-400",
+    bgColor: "bg-slate-500/20",
+    category: "Mobility",
+  },
+  {
+    name: "FlyBeyond Ceylon",
+    description: "Inspiring the next generation of global career explorers",
+    icon: Plane,
+    iconColor: "text-sky-400",
+    bgColor: "bg-sky-500/20",
+    category: "Aviation",
+  },
+  {
+    name: "Popeyes",
+    description: "Driving the energy of our delegation with famous Louisiana hospitality",
+    icon: Utensils,
+    iconColor: "text-orange-400",
+    bgColor: "bg-orange-500/20",
+    category: "Food & Beverage",
+  },
+  {
+    name: "Glowmax",
+    description: "Providing total ELV solutions to power up our operational infrastructure",
+    icon: Zap,
+    iconColor: "text-amber-400",
+    bgColor: "bg-amber-500/20",
+    category: "Infrastructure",
+  },
+  {
+    name: "Sweet Ant",
+    description: "Ensuring high-quality structural ingredients for premium event execution",
+    icon: Cookie,
+    iconColor: "text-rose-400",
+    bgColor: "bg-rose-500/20",
+    category: "Catering",
+  },
 ];
 
-const integrations = [
-  { name: "GitHub Actions", description: "Native CI/CD integration", category: "CI/CD" },
-  { name: "GitLab CI", description: "Deploy from GitLab", category: "CI/CD" },
-  { name: "Vercel", description: "Zero-config deployments", category: "Platform" },
-  { name: "Netlify", description: "Static site hosting", category: "Platform" },
-  { name: "Docker", description: "Container deployments", category: "Containers" },
-  { name: "Kubernetes", description: "Orchestration support", category: "Containers" },
-  { name: "Terraform", description: "Infrastructure as code", category: "IaC" },
-  { name: "Pulumi", description: "Modern IaC platform", category: "IaC" },
-  { name: "Datadog", description: "APM & monitoring", category: "Observability" },
-  { name: "Sentry", description: "Error tracking", category: "Observability" },
-  { name: "LogRocket", description: "Session replay", category: "Observability" },
-  { name: "PostHog", description: "Product analytics", category: "Analytics" },
+const prizeCategories = [
+  {
+    title: "First Place Champion",
+    amount: "LKR 75,000",
+    description: "Exceptional innovation, technical ability, and outstanding problem-solving skills",
+    color: "from-amber-500 to-amber-600",
+    icon: Award,
+  },
+  {
+    title: "Second Place Runner-up",
+    amount: "LKR 50,000",
+    description: "Corporate-ready critical thinking, structural execution, and high-impact creative solutions",
+    color: "from-slate-400 to-slate-500",
+    icon: Award,
+  },
+  {
+    title: "Third Place",
+    amount: "LKR 30,000",
+    description: "Strong technical capabilities, resilience, and actionable real-world tech concepts",
+    color: "from-amber-700 to-amber-800",
+    icon: Award,
+  },
+  {
+    title: "Finalist Merit Awards (10 Teams)",
+    amount: "LKR 10,000 each",
+    description: "Competitive dedication and technical prowess for the next top 10 ranked teams",
+    color: "from-violet-500 to-indigo-500",
+    icon: Award,
+  },
 ];
 
 export function Partners() {
   return (
-    <section
-      id="partners"
-      className="relative min-h-screen min-w-screen w-screen snap-center flex flex-col items-center justify-center py-20 sm:py-28 bg-slate-950 border-t border-white/5"
-    >
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full">
+    <section id="partners" className="py-20 sm:py-28 bg-slate-950 border-t border-white/5">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mb-16 text-center">
           <div className="mb-4 flex items-center justify-center gap-2">
             <span className="inline-flex items-center gap-1.5 rounded-full bg-violet-600/20 px-3 py-1 text-xs font-medium text-violet-300">
-              Trusted by innovators
+              Corporate Partners
             </span>
           </div>
           <h2 className="mb-4 text-3xl font-bold tracking-tight text-white sm:text-4xl md:text-5xl">
-            Used by the world&apos;s best teams
+            Proudly trusted by national and multinational organizations
           </h2>
           <p className="mx-auto max-w-2xl text-lg text-slate-300">
-            From startups to enterprises, teams trust Nova to power their most critical applications.
+            Project Nova is proudly trusted by organizations seeking to empower youth leadership and strengthen employer branding presence
           </p>
         </div>
 
-        <div className="mb-20 overflow-hidden">
-          <div className="flex animate-scroll gap-8 lg:gap-16" aria-hidden="true">
-            {partners.map((partner) => (
-              <div key={partner.name} className="flex-shrink-0 flex items-center gap-3 rounded-xl bg-white/5 px-6 py-3 transition-all hover:bg-white/10">
-                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-violet-600/20 to-indigo-600/20">
-                  <span className="text-xs font-bold text-violet-400 uppercase">
-                    {partner.name.charAt(0)}
-                  </span>
-                </div>
-                <span className="font-medium text-white">{partner.name}</span>
-              </div>
-            ))}
-            {partners.map((partner) => (
-              <div key={`${partner.name}-2`} className="flex-shrink-0 flex items-center gap-3 rounded-xl bg-white/5 px-6 py-3 transition-all hover:bg-white/10">
-                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-violet-600/20 to-indigo-600/20">
-                  <span className="text-xs font-bold text-violet-400 uppercase">
-                    {partner.name.charAt(0)}
-                  </span>
-                </div>
-                <span className="font-medium text-white">{partner.name}</span>
-              </div>
+        {/* Long Term Partners */}
+        <div className="mb-20">
+          <h3 className="mb-8 text-center text-2xl font-bold text-white">Long Term Partners</h3>
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+            {longTermPartners.map((partner) => (
+              <Card
+                key={partner.name}
+                className="relative overflow-hidden border-white/10 bg-white/5 backdrop-blur-sm transition-all hover:border-violet-500/30 hover:bg-white/10 hover:shadow-[0_0_30px_rgba(139,92,246,0.1)] group"
+              >
+                <div className="absolute inset-0 bg-gradient-to-br from-violet-600/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                <CardContent className="relative p-6">
+                  <div className="mb-4 flex items-center gap-3">
+                    <div className={`flex h-12 w-12 items-center justify-center rounded-xl ${partner.bgColor}`}>
+                      <partner.icon className={`h-6 w-6 ${partner.iconColor}`} />
+                    </div>
+                    <Badge variant="secondary" className="text-xs bg-white/10 border-white/10 text-slate-300">
+                      {partner.category}
+                    </Badge>
+                  </div>
+                  <h4 className="mb-2 font-semibold text-white">{partner.name}</h4>
+                  <p className="text-sm text-slate-400">{partner.description}</p>
+                </CardContent>
+              </Card>
             ))}
           </div>
         </div>
 
+        {/* Prize Pool Stats */}
         <div className="mb-16 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
           {[
-            { value: "500K+", label: "Developers" },
-            { value: "50K+", label: "Teams" },
-            { value: "Fortune 500", label: "Companies" },
-            { value: "99.99%", label: "Retention Rate" },
+            { value: "LKR 75,000", label: "1st Place Prize" },
+            { value: "LKR 50,000", label: "2nd Place Prize" },
+            { value: "LKR 30,000", label: "3rd Place Prize" },
+            { value: "LKR 255,000", label: "Total Prize Pool" },
           ].map((stat) => (
             <div key={stat.label} className="text-center p-6 rounded-2xl border border-white/10 bg-white/5">
-              <div className="mb-2 text-3xl font-bold text-white sm:text-4xl">{stat.value}</div>
+              <div className="mb-2 text-3xl font-bold text-white sm:text-4xl bg-gradient-to-r from-amber-400 to-amber-600 bg-clip-text text-transparent">
+                {stat.value}
+              </div>
               <div className="text-slate-400">{stat.label}</div>
             </div>
           ))}
         </div>
 
+        {/* Prize Categories */}
         <div>
-          <h3 className="mb-8 text-center text-2xl font-bold text-white">
-            Integrates with your stack
-          </h3>
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            {integrations.map((integration) => (
-              <div
-                key={integration.name}
-                className="rounded-xl border border-white/10 bg-white/5 p-4 transition-all hover:border-violet-500/30 hover:bg-white/10"
+          <h3 className="mb-8 text-center text-2xl font-bold text-white">Prize Categories</h3>
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {prizeCategories.map((prize, index) => (
+              <Card
+                key={index}
+                className="relative overflow-hidden border-white/10 bg-white/5 backdrop-blur-sm transition-all hover:border-violet-500/30 hover:bg-white/10"
               >
-                <div className="mb-2 flex items-center gap-2">
-                  <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-violet-600/20 to-indigo-600/20">
-                    <span className="text-xs font-bold text-violet-400 uppercase">
-                      {integration.name.charAt(0)}
-                    </span>
-                  </span>
-                  <span className="font-medium text-white">{integration.name}</span>
-                </div>
-                <p className="text-sm text-slate-400">{integration.description}</p>
-                <span className="inline-block mt-2 rounded-full bg-violet-600/20 px-2 py-0.5 text-xs font-medium text-violet-300">
-                  {integration.category}
-                </span>
-              </div>
+                <div className="absolute inset-0 bg-gradient-to-br from-violet-600/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                <CardContent className="relative p-6">
+                  <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br text-white">
+                    <prize.icon className="h-6 w-6" />
+                  </div>
+                  <h4 className="mb-2 font-semibold text-white">{prize.title}</h4>
+                  <div className="mb-3 text-2xl font-bold bg-gradient-to-r {prize.color} bg-clip-text text-transparent">
+                    {prize.amount}
+                  </div>
+                  <p className="text-sm text-slate-400">{prize.description}</p>
+                </CardContent>
+              </Card>
             ))}
           </div>
         </div>
