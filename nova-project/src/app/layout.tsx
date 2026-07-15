@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Poppins, Space_Grotesk, Cormorant_Garamond } from "next/font/google";
+import { Poppins, Space_Grotesk, Cormorant_Garamond, Orbitron } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
@@ -22,6 +22,12 @@ const cormorantGaramond = Cormorant_Garamond({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
   style: ["normal", "italic"],
+});
+
+const orbitron = Orbitron({
+  variable: "--font-orbitron",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800", "900"],
 });
 
 export const metadata: Metadata = {
@@ -80,7 +86,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${poppins.variable} ${spaceGrotesk.variable} ${cormorantGaramond.variable} h-full antialiased`}>
+    <html lang="en" className={`${poppins.variable} ${spaceGrotesk.variable} ${cormorantGaramond.variable} ${orbitron.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col bg-[var(--nova-bg)] text-slate-50">
         <Script
           type="module"

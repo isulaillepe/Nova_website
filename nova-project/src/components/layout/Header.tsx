@@ -43,16 +43,15 @@ export function Header() {
                 ? "opacity-100 translate-y-0 pointer-events-auto"
                 : "opacity-0 -translate-y-4 pointer-events-none"
             }`}
-            aria-label="CodeSprint 11 Home"
+            aria-label="Project Nova Home"
           >
             <div className="relative border-y border-white/10 px-5 py-1.5 font-space font-extrabold tracking-widest text-sm select-none uppercase">
               {/* Left bracket corners */}
               <div className="absolute left-0 top-0 bottom-0 w-2 border-y border-l border-white/20" />
               {/* Right bracket corners */}
               <div className="absolute right-0 top-0 bottom-0 w-2 border-y border-r border-white/20" />
-              <span className="text-white">CODE</span>
-              <span className="text-slate-300 font-light">SPRINT</span>
-              <span className="text-[#FF5533] ml-0.5">11</span>
+              <span className="text-white">PROJECT</span>
+              <span className="text-[#FF5533] ml-1.5">NOVA</span>
             </div>
           </Link>
 

@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { ChevronLeft, ChevronRight, ChevronUp, ChevronDown, Mail, Phone, Award, Handshake, Building2, Sparkles } from "lucide-react";
+import { ChevronLeft, ChevronRight, Mail, Phone, Award, Handshake, Building2, Sparkles } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 
@@ -68,36 +68,9 @@ const committee = [
   },
 ];
 
-const faq = [
-  {
-    question: "What is Project Nova?",
-    answer: "Project Nova is a dynamic, tech-based ecosystem curated for school and university students, building an active bridge where future innovation meets direct corporate opportunities. Managed alongside a global student-driven non-profit network, it connects young thinkers directly with progressive enterprises.",
-  },
-  {
-    question: "Who can participate?",
-    answer: "The challenge is tailored broadly for school and university students across Sri Lanka who show a distinct curiosity for technical problem-solving, innovative ideation, and leadership development.",
-  },
-  {
-    question: "How do we sign up for this event?",
-    answer: "Teams can register formally on our page during the initial launch, granting immediate access to the early workshop modules and proposal submission portals.",
-  },
-  {
-    question: "What is the competition layout?",
-    answer: "The event runs over two major phases. First Phase handles conceptual proposal collection and essential skill-building workshops. Second Phase requires qualified teams to submit concrete project completions, leading to live panel presentations at the University of Sri Jayewardenepura.",
-  },
-  {
-    question: "What value do corporate partners secure?",
-    answer: "Partnering entities gain deep exposure to top-tier university talent, run targeted social media challenges, secure high-impact youth insight surveys, and build meaningful CSR footprints focused on global education goals.",
-  },
-  {
-    question: "What rewards do winners receive?",
-    answer: "Teams compete for a comprehensive cash prize layout consisting of LKR 75,000 for 1st place, LKR 50,000 for 2nd place, LKR 30,000 for 3rd place, and LKR 10,000 each for the next 10 places, accompanied by extensive corporate visibility and performance validation reports.",
-  },
-];
 
 export function Testimonials() {
   const [currentIndex, setCurrentIndex] = React.useState(0);
-  const [openFaq, setOpenFaq] = React.useState<number | null>(null);
 
   const next = () => setCurrentIndex((i) => (i + 1) % committee.length);
   const prev = () => setCurrentIndex((i) => (i - 1 + committee.length) % committee.length);
@@ -220,47 +193,7 @@ export function Testimonials() {
           </div>
         </div>
 
-        {/* FAQ Section */}
-        <div className="mt-16">
-          <div className="mb-12 text-center">
-            <h3 className="mb-4 text-2xl font-bold text-white sm:text-3xl">Frequently Asked Questions</h3>
-            <p className="mx-auto max-w-2xl text-slate-300">
-              Everything you need to know about Project Nova
-            </p>
-          </div>
 
-          <div className="grid gap-4 md:grid-cols-2">
-            {faq.map((item, index) => (
-              <Card
-                key={index}
-                className="group overflow-hidden border-white/10 bg-white/5 backdrop-blur-sm transition-all hover:border-[var(--nova-primary)]/30 hover:bg-white/10"
-              >
-                <CardContent className="p-6">
-                  <button
-                    onClick={() => setOpenFaq(openFaq === index ? null : index)}
-                    className="w-full flex items-center justify-between gap-4 text-left"
-                  >
-                    <h4 className="font-semibold text-white pr-4">
-                      {item.question}
-                    </h4>
-                    <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/5 text-slate-400 transition-all group-hover:text-[var(--nova-secondary)]">
-                      {openFaq === index ? (
-                        <ChevronUp className="h-5 w-5" />
-                      ) : (
-                        <ChevronDown className="h-5 w-5" />
-                      )}
-                    </span>
-                  </button>
-                  {openFaq === index && (
-                    <div className="mt-4 animate-in fade-in slide-in-from-top-2">
-                      <p className="text-slate-300 leading-relaxed">{item.answer}</p>
-                    </div>
-                  )}
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
       </div>
     </section>
   );

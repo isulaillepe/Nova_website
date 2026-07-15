@@ -11,7 +11,7 @@ const tickerItems = [
   "DHPL AUDITORIUM — COLOMBO",
   "6.93° N / 79.85° E",
   "LIVE INVESTOR PANEL",
-  "MISSION CS-11 · 11TH EDITION",
+  "MISSION NOVA · PROJECT NOVA",
   "INTER-UNIVERSITY"
 ];
 
@@ -78,9 +78,8 @@ export default function Hero() {
             <div className="absolute left-0 top-0 bottom-0 w-2 border-y border-l border-white/20" />
             {/* Right bracket corners */}
             <div className="absolute right-0 top-0 bottom-0 w-2 border-y border-r border-white/20" />
-            <span className="text-white">CODE</span>
-            <span className="text-slate-300 font-light">SPRINT</span>
-            <span className="text-[#FF5533] ml-0.5">11</span>
+            <span className="text-white">PROJECT</span>
+            <span className="text-[#FF5533] ml-1.5">NOVA</span>
           </motion.div>
         </div>
 
@@ -108,7 +107,7 @@ export default function Hero() {
           {/* Mission tag */}
           <div className="flex items-center gap-2 font-space text-[10px] sm:text-xs font-bold uppercase tracking-[0.25em] text-slate-300">
             <span className="w-2 h-2 rounded-full bg-[#FF5533] shadow-[0_0_8px_#FF5533]" />
-            MISSION CS-11 — IEEE STUDENT BRANCH OF IIT
+            MISSION NOVA — AIESEC IN UNIVERSITY OF SRI JAYEWARDENEPURA
           </div>
 
           {/* Heading */}

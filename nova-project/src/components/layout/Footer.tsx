@@ -1,10 +1,13 @@
+"use client";
+
 import Link from "next/link";
-import { Mail, MapPin, Phone, Sparkles } from "lucide-react";
-import { FaGithub, FaTwitter, FaLinkedin, FaInstagram, FaYoutube } from "react-icons/fa";
+import { usePathname } from "next/navigation";
+import { Mail, MapPin, Phone } from "lucide-react";
+import { FaLinkedinIn, FaInstagram, FaYoutube, FaFacebookF } from "react-icons/fa";
 
 const footerLinks = {
-  projectNova: [
-    { label: "About Nova", href: "/#about" },
+  codeSplash: [
+    { label: "About CodeSplash", href: "/#about" },
     { label: "Timeline", href: "/#timeline" },
     { label: "Prize Pool", href: "/#prizes" },
     { label: "Organizing Committee", href: "/#committee" },
@@ -14,53 +17,59 @@ const footerLinks = {
     { label: "School Track", href: "/register?track=school" },
     { label: "University Track", href: "/register?track=university" },
     { label: "Registration", href: "/register" },
-    { label: "FAQ", href: "/#committee" },
+    { label: "FAQ", href: "/#faq" },
     { label: "Rules & Guidelines", href: "/#rules" },
   ],
   partners: [
     { label: "Become a Partner", href: "/#partners" },
-    { label: "Long Term Partners", href: "/#partners" },
     { label: "Partner Benefits", href: "/#partners" },
     { label: "Contact Us", href: "/#contact" },
   ],
-  aiesec: [
-    { label: "AIESEC in USJ", href: "https://aiesec.org" },
-    { label: "Global Volunteer", href: "https://aiesec.org/global-volunteer" },
-    { label: "Global Talent", href: "https://aiesec.org/global-talent" },
-    { label: "Global Teacher", href: "https://aiesec.org/global-teacher" },
+  cssa: [
+    { label: "CSSA Website", href: "https://codesplash.lk" },
+    { label: "FCT UOK", href: "https://fct.kln.ac.lk" },
+    { label: "University of Kelaniya", href: "https://kln.ac.lk" },
   ],
 };
 
 const socialLinks = [
-  { icon: FaTwitter, href: "https://twitter.com/aiesecusj", label: "Twitter" },
-  { icon: FaGithub, href: "https://github.com/aiesecusj", label: "GitHub" },
-  { icon: FaLinkedin, href: "https://linkedin.com/company/aiesecusj", label: "LinkedIn" },
-  { icon: FaInstagram, href: "https://instagram.com/aiesecusj", label: "Instagram" },
-  { icon: FaYoutube, href: "https://youtube.com/@aiesecusj", label: "YouTube" },
+  { icon: FaLinkedinIn, href: "https://linkedin.com", label: "LinkedIn" },
+  { icon: FaFacebookF, href: "https://facebook.com", label: "Facebook" },
+  { icon: FaInstagram, href: "https://instagram.com", label: "Instagram" },
+  { icon: FaYoutube, href: "https://youtube.com", label: "YouTube" },
 ];
 
 const contactInfo = [
-  { icon: Mail, label: "projectnova@aiesec.net", href: "mailto:projectnova@aiesec.net" },
-  { icon: MapPin, label: "University of Sri Jayewardenepura, Sri Lanka", href: "#" },
-  { icon: Phone, label: "+94 77 081 2900", href: "tel:+94770812900" },
+  { icon: Mail, label: "codesplash.cssa@gmail.com", href: "mailto:codesplash.cssa@gmail.com" },
+  { icon: MapPin, label: "University of Kelaniya, Sri Lanka", href: "#" },
+  { icon: Phone, label: "+94 77 123 4567", href: "tel:+94771234567" },
 ];
 
 export function Footer() {
+  const pathname = usePathname();
+
+  // Hide the global layout footer on the homepage, since the homepage uses a
+  // scroll-driven custom footer within the FAQ sticky register section.
+  if (pathname === "/") {
+    return null;
+  }
+
   return (
     <footer className="relative border-t border-white/10 bg-[var(--nova-bg)]/50 backdrop-blur-sm">
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 xl:px-10">
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-6">
           <div className="lg:col-span-2">
-            <Link href="/" className="flex items-center gap-2 font-bold text-xl text-white">
-              <div className="relative flex h-8 w-8 items-center justify-center rounded-xl bg-gradient-to-br from-[var(--nova-primary)] to-indigo-600">
-                <Sparkles className="h-5 w-5 text-white" />
-                <span className="absolute inset-0 -translate-y-0.5 bg-gradient-to-br from-blue-400 to-indigo-400 opacity-50 rounded-xl" />
+            <Link href="/" className="flex items-center gap-3 font-bold text-xl text-white">
+              <div className="flex items-center gap-2 select-none">
+                <svg className="h-7 w-auto text-white" viewBox="0 0 24 36" fill="currentColor">
+                  <path d="M12 0C7.58 0 4 3.58 4 8c0 3.31 2.03 6.14 4.9 7.37L8 16.5c0 .28.22.5.5.5h2v6H6.5c-.28 0-.5.22-.5.5v2c0 .28.22.5.5.5H10.5v10c0 .28.22.5.5.5h2c.28 0 .5-.22.5-.5V26h4c.28 0 .5-.22.5-.5v-2c0-.28-.22-.5-.5-.5H13.5v-6h2c.28 0 .5-.22.5-.5l-.9-1.13C17.97 14.14 20 11.31 20 8c0-4.42-3.58-8-8-8zm0 13c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z" />
+                </svg>
+                <span className="font-space font-black text-xl tracking-wider">CSSA</span>
               </div>
-              Project Nova
             </Link>
             <p className="mt-4 max-w-xs text-slate-400 text-sm leading-relaxed">
               A dynamic tech-based event designed for school and university students, creating a platform
-              where innovation meets opportunity. Organized by AIESEC in University of Sri Jayewardenepura.
+              where innovation meets opportunity. Organized by Faculty of Computing and Technology, University of Kelaniya.
             </p>
             <div className="mt-6 flex gap-4">
               {socialLinks.map((social) => (
@@ -79,9 +88,9 @@ export function Footer() {
           </div>
 
           <div>
-            <h3 className="font-semibold text-white">Project Nova</h3>
+            <h3 className="font-semibold text-white">CodeSplash</h3>
             <ul className="mt-4 space-y-3">
-              {footerLinks.projectNova.map((link) => (
+              {footerLinks.codeSplash.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
@@ -127,9 +136,9 @@ export function Footer() {
           </div>
 
           <div>
-            <h3 className="font-semibold text-white">AIESEC</h3>
+            <h3 className="font-semibold text-white">CSSA UOK</h3>
             <ul className="mt-4 space-y-3">
-              {footerLinks.aiesec.map((link) => (
+              {footerLinks.cssa.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
@@ -147,7 +156,7 @@ export function Footer() {
 
         <div className="mt-12 flex flex-col items-center justify-between gap-6 border-t border-white/10 pt-8 md:flex-row">
           <p className="text-sm text-slate-500">
-            © {new Date().getFullYear()} Project Nova - AIESEC in University of Sri Jayewardenepura. All rights reserved.
+            © {new Date().getFullYear()} CodeSplash. Organized by Faculty of Computing and Technology, University of Kelaniya. All rights reserved.
           </p>
 
           <div className="flex flex-wrap items-center justify-center gap-4 text-sm text-slate-500">
