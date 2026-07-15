@@ -2,76 +2,106 @@
 
 import * as React from "react";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { Menu, X, Sparkles, ArrowRight, Zap, Shield, Globe, Users } from "lucide-react";
+import { Menu, X } from "lucide-react";
 
 const navLinks = [
-  { href: "/#hero", label: "Home" },
-  { href: "/#timeline", label: "Timeline" },
-  { href: "/#prizes", label: "Prizes" },
-  { href: "/#committee", label: "Committee" },
-  { href: "/#partners", label: "Partners" },
+  { href: "/#rules", label: "RULES" },
+  { href: "/#timeline", label: "TIMELINE" },
+  { href: "/#contact", label: "CONTACT" },
+  { href: "/#faq", label: "FAQ" },
 ];
 
 export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
-  const [isScrolled, setIsScrolled] = React.useState(false);
+  const [scrollY, setScrollY] = React.useState(0);
 
   React.useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      setScrollY(window.scrollY);
     };
-    window.addEventListener("scroll", handleScroll);
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? "bg-[var(--nova-bg)]/80 backdrop-blur-xl border-b border-white/10 shadow-[0_0_30px_rgba(0,53,153,0.1)]"
-          : "bg-transparent"
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        scrollY > 300
+          ? "bg-slate-950/85 backdrop-blur-xl border-b border-white/5 shadow-[0_4px_30px_rgba(0,0,0,0.5)]"
+          : "bg-transparent pointer-events-none"
       }`}
     >
       <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8" aria-label="Main navigation">
-        <div className="flex h-16 items-center justify-between">
-          <Link href="#hero" className="flex items-center gap-2" aria-label="Project Nova Home">
-            <div className="relative flex h-9 w-9 items-center justify-center">
-              <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-[var(--nova-primary)] via-indigo-600 to-blue-600 opacity-20 blur-xl" />
-              <Sparkles className="relative h-6 w-6 text-white drop-shadow-[0_0_8px_rgba(0,53,153,0.6)]" />
+        <div className="flex h-20 items-center justify-between">
+          
+          {/* Logo with futuristic brackets */}
+          <Link
+            href="/"
+            className={`flex items-center transition-all duration-500 transform ${
+              scrollY > 300
+                ? "opacity-100 translate-y-0 pointer-events-auto"
+                : "opacity-0 -translate-y-4 pointer-events-none"
+            }`}
+            aria-label="CodeSprint 11 Home"
+          >
+            <div className="relative border-y border-white/10 px-5 py-1.5 font-space font-extrabold tracking-widest text-sm select-none uppercase">
+              {/* Left bracket corners */}
+              <div className="absolute left-0 top-0 bottom-0 w-2 border-y border-l border-white/20" />
+              {/* Right bracket corners */}
+              <div className="absolute right-0 top-0 bottom-0 w-2 border-y border-r border-white/20" />
+              <span className="text-white">CODE</span>
+              <span className="text-slate-300 font-light">SPRINT</span>
+              <span className="text-[#FF5533] ml-0.5">11</span>
             </div>
-            <span className="hidden font-bold text-xl text-white sm:block">
-              Project Nova
-            </span>
           </Link>
 
-          <div className="hidden md:flex md:items-center md:gap-8">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="text-sm font-medium text-slate-300 transition-colors hover:text-[var(--nova-secondary)]"
-              >
-                {link.label}
+          {/* Desktop Navigation & Action Buttons */}
+          <div
+            className={`hidden md:flex md:items-center md:gap-6 transition-all duration-500 delay-100 transform ${
+              scrollY > 400
+                ? "opacity-100 translate-y-0 pointer-events-auto"
+                : "opacity-0 -translate-y-4 pointer-events-none"
+            }`}
+          >
+            <div className="flex items-center gap-4 font-space">
+              {navLinks.map((link, index) => (
+                <React.Fragment key={link.href}>
+                  {index > 0 && <span className="text-white/25 text-xs select-none">·</span>}
+                  <Link
+                    href={link.href}
+                    className="text-[11px] font-bold uppercase tracking-widest text-slate-300 transition-colors hover:text-[#FF5533]"
+                  >
+                    {link.label}
+                  </Link>
+                </React.Fragment>
+              ))}
+            </div>
+
+            {/* Vertical Separator */}
+            <div className="h-4 w-[1px] bg-white/10 mx-1" />
+
+            <div className="flex items-center gap-3">
+              <Link href="/execution-booklet">
+                <button className="border border-white/25 hover:border-white/50 hover:bg-white/5 text-white text-[10px] font-bold uppercase tracking-widest px-4 py-2 rounded-full transition-all duration-300">
+                  EXECUTION BOOKLET
+                </button>
               </Link>
-            ))}
+              <Link href="/register">
+                <button className="bg-[#FF5533] hover:bg-[#e04422] text-white text-[10px] font-bold uppercase tracking-widest px-5 py-2 rounded-full shadow-[0_0_15px_rgba(255,85,51,0.3)] hover:shadow-[0_0_20px_rgba(255,85,51,0.5)] transition-all duration-300">
+                  SUBMIT NOW
+                </button>
+              </Link>
+            </div>
           </div>
 
-          <div className="hidden md:flex md:items-center md:gap-3">
-            <Link href="/register">
-              <Button variant="ghost" size="sm" className="text-slate-300 hover:text-white">
-                Register
-              </Button>
-            </Link>
-            <Link href="/register">
-              <Button size="sm" variant="gradient" className="shadow-[0_0_20px_rgba(0,53,153,0.4)]">
-                Get Started
-              </Button>
-            </Link>
-          </div>
-
+          {/* Mobile menu button */}
           <button
-            className="md:hidden p-2 text-slate-300 hover:text-white"
+            className={`md:hidden p-2 text-slate-300 hover:text-white transition-all duration-500 transform ${
+              scrollY > 300
+                ? "opacity-100 translate-y-0 pointer-events-auto"
+                : "opacity-0 -translate-y-4 pointer-events-none"
+            }`}
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-expanded={isMobileMenuOpen}
             aria-controls="mobile-menu"
@@ -81,33 +111,34 @@ export function Header() {
           </button>
         </div>
 
+        {/* Mobile Navigation Menu */}
         <div
           id="mobile-menu"
           className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${
             isMobileMenuOpen ? "max-h-96 opacity-100 pb-6" : "max-h-0 opacity-0"
           }`}
         >
-          <div className="flex flex-col gap-4 pt-4">
+          <div className="flex flex-col gap-4 pt-4 font-space">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-base font-medium text-slate-300 hover:text-[var(--nova-secondary)] transition-colors"
+                className="text-sm font-semibold uppercase tracking-wider text-slate-300 hover:text-[#FF5533] transition-colors"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 {link.label}
               </Link>
             ))}
             <div className="flex flex-col gap-3 pt-4 border-t border-white/10">
-              <Link href="/register" onClick={() => setIsMobileMenuOpen(false)}>
-                <Button variant="ghost" className="w-full justify-start">
-                  Register
-                </Button>
+              <Link href="/execution-booklet" onClick={() => setIsMobileMenuOpen(false)}>
+                <button className="w-full text-center border border-white/20 text-white text-[11px] font-bold uppercase tracking-widest py-3 rounded-full">
+                  EXECUTION BOOKLET
+                </button>
               </Link>
               <Link href="/register" onClick={() => setIsMobileMenuOpen(false)}>
-                <Button variant="gradient" className="w-full justify-center shadow-[0_0_20px_rgba(0,53,153,0.4)]">
-                  Get Started
-                </Button>
+                <button className="w-full text-center bg-[#FF5533] text-white text-[11px] font-bold uppercase tracking-widest py-3 rounded-full shadow-[0_0_15px_rgba(255,85,51,0.3)]">
+                  SUBMIT NOW
+                </button>
               </Link>
             </div>
           </div>
