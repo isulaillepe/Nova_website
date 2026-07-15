@@ -1,22 +1,12 @@
 "use client";
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import {
-  Users,
-  FileText,
-  Search,
-  GraduationCap,
-  Hammer,
-  Award,
-  CheckCircle,
-  Sparkles,
-} from "lucide-react";
+import { motion } from "framer-motion";
+import { Shield } from "lucide-react";
 
 const timelineSteps = [
   {
     step: "01",
-    icon: Users,
+    icon: Shield,
     title: "Registration of Teams",
     description: "Sign up your team to claim your place in this national innovation experience",
     iconBg: "from-violet-600 to-indigo-600",
@@ -30,7 +20,7 @@ const timelineSteps = [
   },
   {
     step: "02",
-    icon: FileText,
+    icon: Shield,
     title: "Proposal Submission",
     description: "Submit your project concept and foundational framework during the initial rollout phase",
     iconBg: "from-indigo-600 to-blue-600",
@@ -44,7 +34,7 @@ const timelineSteps = [
   },
   {
     step: "03",
-    icon: Search,
+    icon: Shield,
     title: "Reviewing the Proposals",
     description: "Submissions are formally evaluated to shortlist the most promising tech solutions",
     iconBg: "from-blue-600 to-cyan-600",
@@ -58,7 +48,7 @@ const timelineSteps = [
   },
   {
     step: "04",
-    icon: GraduationCap,
+    icon: Shield,
     title: "Workshops for Selected Teams",
     description: "Access deep-dive technical workshops designed to equip participants with expert knowledge and career tools",
     iconBg: "from-cyan-600 to-teal-600",
@@ -72,7 +62,7 @@ const timelineSteps = [
   },
   {
     step: "05",
-    icon: Hammer,
+    icon: Shield,
     title: "Implementation of Projects",
     description: "Develop and refine your active engineering solution before the final project submission window closes",
     iconBg: "from-teal-600 to-emerald-600",
@@ -86,7 +76,7 @@ const timelineSteps = [
   },
   {
     step: "06",
-    icon: Award,
+    icon: Shield,
     title: "The Final Event Day",
     description: "Present your complete project live to judges and engage in panel discussions at the University of Sri Jayewardenepura campus",
     iconBg: "from-emerald-600 to-green-600",
@@ -118,12 +108,12 @@ const phases = [
 
 export function Features() {
   return (
-    <section id="timeline" className="py-20 sm:py-28 lg:py-32 bg-slate-950">
+    <section id="timeline" className="py-20 sm:py-28 lg:py-32 bg-[var(--nova-bg)]">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mb-16 text-center">
           <div className="mb-6 flex items-center justify-center gap-2">
             <span className="inline-flex items-center gap-1.5 rounded-full bg-violet-600/20 px-3 py-1 text-xs font-medium text-violet-300">
-              <Sparkles className="h-3 w-3" />
+              <Shield className="h-3 w-3" />
               Event Timeline
             </span>
           </div>
@@ -138,36 +128,37 @@ export function Features() {
         {/* Phase Overview */}
         <div className="mb-16 grid gap-8 lg:grid-cols-2">
           {phases.map((phase, index) => (
-            <Card
+            <motion.div
               key={phase.title}
-              className="relative overflow-hidden border-white/10 bg-white/5 backdrop-blur-sm transition-all hover:border-violet-500/30 hover:bg-white/10 hover:shadow-[0_0_30px_rgba(139,92,246,0.1)]"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              className="relative overflow-hidden apple-bento-card border-white/10 bg-white/5"
             >
               <div className="absolute inset-0 bg-gradient-to-br from-violet-600/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-              <CardHeader>
-                <div className="mb-4 flex items-center justify-between">
-                  <Badge variant="secondary" className="bg-gradient-to-r text-xs">
-                    {phase.title}
-                  </Badge>
-                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br text-white">
-                    <span className="font-bold text-lg">{index + 1}</span>
-                  </div>
+              <div className="relative mb-4 flex items-center justify-between">
+                <span className="text-xs font-semibold px-3 py-1 rounded-full bg-gradient-to-r text-white" style={{ background: phase.color }}>
+                  {phase.title}
+                </span>
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br text-white">
+                  <span className="font-bold text-lg">{index + 1}</span>
                 </div>
-                <CardTitle className="text-2xl">{phase.title}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="mb-6 text-slate-300">{phase.description}</p>
-                <div className="flex flex-wrap items-center gap-2">
-                  {phase.steps.map((step) => (
-                    <span
-                      key={step}
-                      className="rounded-full bg-gradient-to-r px-3 py-1 text-xs font-medium text-white"
-                      style={{ background: phase.color }}
-                    >
-                      Step {step}
-                    </span>
-                  ))}
-                </div>
-              </CardContent>            </Card>
+              </div>
+              <h3 className="text-2xl font-bold text-white mb-4">{phase.title}</h3>
+              <p className="text-slate-300 mb-6">{phase.description}</p>
+              <div className="flex flex-wrap items-center gap-2">
+                {phase.steps.map((step) => (
+                  <span
+                    key={step}
+                    className="rounded-full bg-gradient-to-r px-3 py-1 text-xs font-medium text-white"
+                    style={{ background: phase.color }}
+                  >
+                    Step {step}
+                  </span>
+                ))}
+              </div>
+            </motion.div>
           ))}
         </div>
 
@@ -176,46 +167,58 @@ export function Features() {
           <div className="absolute left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-violet-600/50 to-transparent -translate-x-1/2 hidden lg:block" />
           <div className="space-y-8">
             {timelineSteps.map((step, index) => (
-              <div
+              <motion.div
                 key={step.step}
-                className="relative flex gap-6 animate-in fade-in slide-in-from-left-4 fill-mode-both"
-                style={{ animationDelay: `${index * 100}ms` } as React.CSSProperties}
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="relative flex gap-6"
               >
                 <div className="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-full bg-gradient-to-br text-white font-bold text-lg z-10 lg:h-16 lg:w-16 lg:text-xl"
                   style={{ background: step.iconBg }}>
                   {step.step}
                 </div>
                 <div className="flex-1">
-                  <Card className="relative overflow-hidden border-white/10 bg-white/5 backdrop-blur-sm transition-all hover:border-violet-500/30 hover:bg-white/10 hover:shadow-[0_0_30px_rgba(139,92,246,0.1)] group">
-                    <div className="absolute inset-0 bg-gradient-to-br from-violet-600/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                    <CardHeader>
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5 }}
+                    className="apple-bento-card border-white/10 bg-white/5"
+                  >
+                    <div className="p-6">
                       <div className="mb-3 flex items-center justify-between">
-                        <Badge variant="outline" className="text-xs">
+                        <span className={`rounded-full px-2.5 py-0.5 text-xs font-medium ${
+                          step.badgeColor === "emerald" ? "bg-emerald-500/20 text-emerald-300" :
+                          step.badgeColor === "violet" ? "bg-violet-500/20 text-violet-300" :
+                          step.badgeColor === "amber" ? "bg-amber-500/20 text-amber-300" :
+                          "bg-cyan-500/20 text-cyan-300"
+                        }`}>
                           {step.badge}
-                        </Badge>
-                        <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br text-white">
+                        </span>
+                        <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br text-white"
+                          style={{ background: step.iconBg }}>
                           <step.icon className="h-5 w-5" />
                         </div>
                       </div>
-                      <CardTitle className="text-xl">{step.title}</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <p className="mb-4 text-slate-300">{step.description}</p>
+                      <h3 className="text-xl font-bold text-white mb-4">{step.title}</h3>
+                      <p className="text-slate-300 mb-4">{step.description}</p>
                       <div className="grid gap-2 sm:grid-cols-3">
                         {step.details.map((detail, i) => (
                           <div
                             key={i}
-                            className="flex items-center gap-2 rounded-lg bg-white/5 px-3 py-2 text-sm text-slate-300 transition-all hover:bg-violet-600/10 hover:text-violet-300"
+                            className="flex items-center gap-2 rounded-lg bg-white/5 px-3 py-2 text-sm text-slate-300 transition-all hover:bg-[var(--nova-primary)]/10 hover:text-[var(--nova-secondary)]"
                           >
-                            <CheckCircle className="h-4 w-4 text-emerald-400 flex-shrink-0" />
+                            <Shield className="h-4 w-4 text-emerald-400 flex-shrink-0" />
                             <span>{detail}</span>
                           </div>
                         ))}
                       </div>
-                    </CardContent>
-                  </Card>
+                    </div>
+                  </motion.div>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>

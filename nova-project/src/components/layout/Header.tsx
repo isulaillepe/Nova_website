@@ -3,7 +3,15 @@
 import * as React from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Menu, X, Sparkles } from "lucide-react";
+import { Menu, X, Sparkles, ArrowRight, Zap, Shield, Globe, Users } from "lucide-react";
+
+const navLinks = [
+  { href: "/#hero", label: "Home" },
+  { href: "/#timeline", label: "Timeline" },
+  { href: "/#prizes", label: "Prizes" },
+  { href: "/#committee", label: "Committee" },
+  { href: "/#partners", label: "Partners" },
+];
 
 export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
@@ -17,19 +25,11 @@ export function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navLinks = [
-    { href: "/#hero", label: "Home" },
-    { href: "/#timeline", label: "Timeline" },
-    { href: "/#prizes", label: "Prizes" },
-    { href: "/#committee", label: "Committee" },
-    { href: "/#partners", label: "Partners" },
-  ];
-
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? "bg-slate-950/80 backdrop-blur-xl border-b border-white/10 shadow-[0_0_30px_rgba(99,102,241,0.1)]"
+          ? "bg-[var(--nova-bg)]/80 backdrop-blur-xl border-b border-white/10 shadow-[0_0_30px_rgba(0,53,153,0.1)]"
           : "bg-transparent"
       }`}
     >
@@ -37,8 +37,8 @@ export function Header() {
         <div className="flex h-16 items-center justify-between">
           <Link href="#hero" className="flex items-center gap-2" aria-label="Project Nova Home">
             <div className="relative flex h-9 w-9 items-center justify-center">
-              <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-violet-600 via-indigo-600 to-blue-600 opacity-20 blur-xl" />
-              <Sparkles className="relative h-6 w-6 text-white drop-shadow-[0_0_8px_rgba(139,92,246,0.6)]" />
+              <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-[var(--nova-primary)] via-indigo-600 to-blue-600 opacity-20 blur-xl" />
+              <Sparkles className="relative h-6 w-6 text-white drop-shadow-[0_0_8px_rgba(0,53,153,0.6)]" />
             </div>
             <span className="hidden font-bold text-xl text-white sm:block">
               Project Nova
@@ -50,7 +50,7 @@ export function Header() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-sm font-medium text-slate-300 transition-colors hover:text-violet-300"
+                className="text-sm font-medium text-slate-300 transition-colors hover:text-[var(--nova-secondary)]"
               >
                 {link.label}
               </Link>
@@ -64,7 +64,7 @@ export function Header() {
               </Button>
             </Link>
             <Link href="/register">
-              <Button size="sm" variant="gradient" className="shadow-[0_0_20px_rgba(139,92,246,0.4)]">
+              <Button size="sm" variant="gradient" className="shadow-[0_0_20px_rgba(0,53,153,0.4)]">
                 Get Started
               </Button>
             </Link>
@@ -92,7 +92,7 @@ export function Header() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-base font-medium text-slate-300 hover:text-violet-300 transition-colors"
+                className="text-base font-medium text-slate-300 hover:text-[var(--nova-secondary)] transition-colors"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 {link.label}
@@ -105,7 +105,7 @@ export function Header() {
                 </Button>
               </Link>
               <Link href="/register" onClick={() => setIsMobileMenuOpen(false)}>
-                <Button variant="gradient" className="w-full justify-center shadow-[0_0_20px_rgba(139,92,246,0.4)]">
+                <Button variant="gradient" className="w-full justify-center shadow-[0_0_20px_rgba(0,53,153,0.4)]">
                   Get Started
                 </Button>
               </Link>

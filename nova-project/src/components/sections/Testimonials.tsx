@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { ChevronLeft, ChevronRight, ChevronUp, ChevronDown, Mail, Phone, Award, Handshake, Building2 } from "lucide-react";
+import { ChevronLeft, ChevronRight, ChevronUp, ChevronDown, Mail, Phone, Award, Handshake, Building2, Sparkles } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 
@@ -108,7 +108,7 @@ export function Testimonials() {
   }, []);
 
   return (
-    <section id="committee" className="relative py-20 sm:py-28 lg:py-32 bg-slate-950">
+    <section id="committee" className="relative py-20 sm:py-28 lg:py-32 bg-[var(--nova-bg)]">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mb-16 text-center">
           <div className="mb-4 flex items-center justify-center gap-2">
@@ -120,7 +120,7 @@ export function Testimonials() {
           <h2 className="mb-4 text-3xl font-bold tracking-tight text-white sm:text-4xl md:text-5xl">
             Logic on their minds, passion in their soul.
             <br />
-            <span className="bg-gradient-to-r from-violet-400 via-indigo-400 to-cyan-400 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-[var(--nova-primary)] via-indigo-400 to-cyan-400 bg-clip-text text-transparent">
               Meet the execution leaders behind Project Nova.
             </span>
           </h2>
@@ -143,12 +143,11 @@ export function Testimonials() {
                   style={{ width: `${100 / committee.length * 100}%`, maxWidth: "100%" }}
                 >
                   <div className="w-full max-w-xl mx-auto">
-                    <Card className="relative overflow-hidden border-white/10 bg-white/5 backdrop-blur-sm transition-all hover:border-violet-500/30 hover:bg-white/10 hover:shadow-[0_0_30px_rgba(139,92,246,0.1)] h-full">
-                      <div className="absolute inset-0 bg-gradient-to-br from-violet-600/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <Card className="relative overflow-hidden border-white/10 bg-white/5 backdrop-blur-sm transition-all hover:border-[var(--nova-primary)]/30 hover:bg-white/10 hover:shadow-[0_0_30px_rgba(0,53,153,0.1)] h-full">
                       <CardContent className="relative p-6">
                         <div className="mb-6 flex items-center justify-between">
                           <div className="flex items-center gap-3">
-                            <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-violet-600 to-indigo-600 text-white font-bold text-xl">
+                            <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-[var(--nova-primary)] to-indigo-600 text-white font-bold text-xl">
                               {member.avatar}
                             </div>
                             <div>
@@ -156,7 +155,9 @@ export function Testimonials() {
                               <p className="text-sm text-slate-400">{member.role}</p>
                             </div>
                           </div>
-                          <Badge variant="secondary" className={`text-xs ${member.badgeColor === 'amber' ? 'bg-amber-500/20 text-amber-300' : member.badgeColor === 'violet' ? 'bg-violet-500/20 text-violet-300' : 'bg-emerald-500/20 text-emerald-300'}`}>
+                          <Badge variant="secondary" className={`text-xs ${
+                            member.badgeColor === 'amber' ? 'bg-amber-500/20 text-amber-300' : member.badgeColor === 'violet' ? 'bg-violet-500/20 text-violet-300' : 'bg-emerald-500/20 text-emerald-300'
+                          }`}>
                             {member.badge}
                           </Badge>
                         </div>
@@ -169,10 +170,10 @@ export function Testimonials() {
                             <span>{member.contact}</span>
                           </div>
                           <div className="flex items-center gap-3 text-slate-300">
-                            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-white/5 text-violet-400">
+                            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-white/5 text-[var(--nova-primary)]">
                               <Mail className="h-5 w-5" />
                             </div>
-                            <a href={`mailto:${member.email}`} className="hover:text-violet-300 transition-colors">
+                            <a href={`mailto:${member.email}`} className="hover:text-[var(--nova-secondary)] transition-colors">
                               {member.email}
                             </a>
                           </div>
@@ -210,7 +211,7 @@ export function Testimonials() {
                 onClick={() => setCurrentIndex(index)}
                 className={`h-2 rounded-full transition-all duration-300 ${
                   index === currentIndex
-                    ? "w-8 bg-violet-500"
+                    ? "w-8 bg-[var(--nova-primary)]"
                     : "w-2 bg-white/20 hover:bg-white/40"
                 }`}
                 aria-label={`Go to member ${index + 1}`}
@@ -232,7 +233,7 @@ export function Testimonials() {
             {faq.map((item, index) => (
               <Card
                 key={index}
-                className="group overflow-hidden border-white/10 bg-white/5 backdrop-blur-sm transition-all hover:border-violet-500/30 hover:bg-white/10"
+                className="group overflow-hidden border-white/10 bg-white/5 backdrop-blur-sm transition-all hover:border-[var(--nova-primary)]/30 hover:bg-white/10"
               >
                 <CardContent className="p-6">
                   <button
@@ -242,7 +243,7 @@ export function Testimonials() {
                     <h4 className="font-semibold text-white pr-4">
                       {item.question}
                     </h4>
-                    <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/5 text-slate-400 transition-all group-hover:text-violet-300">
+                    <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/5 text-slate-400 transition-all group-hover:text-[var(--nova-secondary)]">
                       {openFaq === index ? (
                         <ChevronUp className="h-5 w-5" />
                       ) : (
@@ -256,7 +257,7 @@ export function Testimonials() {
                     </div>
                   )}
                 </CardContent>
-            </Card>
+              </Card>
             ))}
           </div>
         </div>

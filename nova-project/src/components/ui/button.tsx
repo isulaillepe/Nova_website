@@ -6,24 +6,24 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full text-sm font-semibold transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--nova-primary)]/50 disabled:pointer-events-none disabled:opacity-50",
   {
     variants: {
       variant: {
-        default: "bg-primary text-primary-foreground hover:bg-primary/90",
-        destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90",
-        outline: "border border-input bg-background hover:bg-accent hover:text-accent-foreground",
-        secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80",
-        ghost: "hover:bg-accent hover:text-accent-foreground",
-        link: "text-primary underline-offset-4 hover:underline",
-        glass: "bg-white/10 backdrop-blur-md border border-white/20 text-white hover:bg-white/20",
-        gradient: "bg-gradient-to-r from-violet-600 via-indigo-600 to-blue-600 text-white hover:from-violet-700 hover:via-indigo-700 hover:to-blue-700",
+        default: "bg-[var(--nova-primary)] text-white hover:bg-[var(--nova-primary)]/90 shadow-lg shadow-[var(--nova-primary)]/20",
+        destructive: "bg-red-600 text-white hover:bg-red-600/90 shadow-lg shadow-red-600/20",
+        outline: "border border-white/10 bg-transparent hover:bg-white/5 text-white",
+        secondary: "bg-white/5 text-white border border-white/10 hover:bg-white/10 hover:border-white/20",
+        ghost: "hover:bg-white/5 hover:text-white text-slate-300",
+        link: "text-[var(--nova-primary)] underline-offset-4 hover:underline",
+        gradient: "px-8 py-4 bg-gradient-to-r from-[var(--nova-primary)] to-indigo-600 text-white font-semibold rounded-full hover:opacity-95 active:scale-95 transition-all duration-300 tracking-tight text-center block w-full sm:w-auto shadow-lg shadow-[var(--nova-primary)]/20",
+        accent: "px-8 py-4 bg-[var(--nova-secondary)] text-slate-950 font-bold rounded-full hover:bg-[#e09e12] active:scale-95 transition-all duration-300 tracking-tight text-center block w-full sm:w-auto shadow-lg shadow-[var(--nova-secondary)]/10",
       },
       size: {
         default: "h-10 px-4 py-2",
-        sm: "h-9 rounded-md px-3",
-        lg: "h-11 rounded-md px-8",
-        xl: "h-12 rounded-lg px-10 text-base",
+        sm: "h-9 rounded-full px-3",
+        lg: "h-11 rounded-full px-8",
+        xl: "h-12 rounded-full px-10 text-base",
         icon: "h-10 w-10",
       },
     },

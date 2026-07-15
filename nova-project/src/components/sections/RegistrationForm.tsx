@@ -25,6 +25,7 @@ import {
   AlertCircle,
   GraduationCap,
   School,
+  Shield,
 } from "lucide-react";
 import { db } from "@/lib/firebase";
 import { collection, addDoc, getDocs, query, where, limit, serverTimestamp } from "firebase/firestore";
@@ -183,7 +184,7 @@ export function RegistrationForm() {
         <Button
           variant="gradient"
           size="xl"
-          className="shadow-[0_0_30px_rgba(139,92,246,0.4)]"
+          className="shadow-[0_0_30px_rgba(0,53,153,0.4)]"
           onClick={() => {
             setSubmitStatus("idle");
             setCurrentStep(1);
@@ -209,7 +210,7 @@ export function RegistrationForm() {
                 <div
                   className={`h-0.5 w-12 sm:w-20 transition-colors duration-500 ${
                     isCompleted
-                      ? "bg-gradient-to-r from-violet-500 to-indigo-500"
+                      ? "bg-gradient-to-r from-[var(--nova-primary)] to-indigo-500"
                       : "bg-white/10"
                   }`}
                 />
@@ -221,16 +222,16 @@ export function RegistrationForm() {
                 }}
                 className={`group flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium transition-all duration-300 ${
                   isActive
-                    ? "bg-gradient-to-r from-violet-600/30 to-indigo-600/30 text-white border border-violet-500/40 shadow-[0_0_20px_rgba(139,92,246,0.2)]"
+                    ? "bg-gradient-to-r from-[var(--nova-primary)]/30 to-indigo-600/30 text-white border border-[var(--nova-primary)]/40 shadow-[0_0_20px_rgba(0,53,153,0.2)]"
                     : isCompleted
-                    ? "bg-white/5 text-violet-300 border border-white/10 cursor-pointer hover:border-violet-500/30"
+                    ? "bg-white/5 text-[var(--nova-primary)] border border-white/10 cursor-pointer hover:border-[var(--nova-primary)]/30"
                     : "bg-white/5 text-slate-500 border border-white/5"
                 }`}
               >
                 <StepIcon
                   className={`h-4 w-4 ${
                     isActive
-                      ? "text-violet-400"
+                      ? "text-[var(--nova-primary)]"
                       : isCompleted
                       ? "text-emerald-400"
                       : ""
@@ -248,7 +249,7 @@ export function RegistrationForm() {
         {currentStep === 1 && (
           <div className="space-y-8 animate-in fade-in slide-in-from-right-4 duration-500">
             <div className="text-center mb-8">
-              <div className="inline-flex items-center gap-1.5 rounded-full bg-violet-600/20 px-3 py-1 text-xs font-medium text-violet-300 mb-4">
+              <div className="inline-flex items-center gap-1.5 rounded-full bg-[var(--nova-primary)]/20 px-3 py-1 text-xs font-medium text-[var(--nova-primary)] mb-4">
                 <Sparkles className="h-3 w-3" />
                 Step 1 of 3
               </div>
@@ -292,7 +293,7 @@ export function RegistrationForm() {
                   htmlFor="track-school"
                   className={`group relative flex cursor-pointer flex-col items-center gap-3 rounded-xl border p-6 transition-all duration-300 ${
                     watchedTrack === "school"
-                      ? "border-violet-500/50 bg-violet-600/10 shadow-[0_0_20px_rgba(139,92,246,0.15)]"
+                      ? "border-[var(--nova-primary)]/50 bg-[var(--nova-primary)]/10 shadow-[0_0_20px_rgba(0,53,153,0.15)]"
                       : "border-white/10 bg-white/5 hover:border-white/20 hover:bg-white/10"
                   }`}
                 >
@@ -306,7 +307,7 @@ export function RegistrationForm() {
                   <div
                     className={`flex h-14 w-14 items-center justify-center rounded-xl transition-all ${
                       watchedTrack === "school"
-                        ? "bg-violet-600/30 text-violet-300"
+                        ? "bg-[var(--nova-primary)]/30 text-[var(--nova-primary)]"
                         : "bg-white/5 text-slate-400 group-hover:text-slate-300"
                     }`}
                   >
@@ -329,7 +330,7 @@ export function RegistrationForm() {
                   htmlFor="track-university"
                   className={`group relative flex cursor-pointer flex-col items-center gap-3 rounded-xl border p-6 transition-all duration-300 ${
                     watchedTrack === "university"
-                      ? "border-violet-500/50 bg-violet-600/10 shadow-[0_0_20px_rgba(139,92,246,0.15)]"
+                      ? "border-[var(--nova-primary)]/50 bg-[var(--nova-primary)]/10 shadow-[0_0_20px_rgba(0,53,153,0.15)]"
                       : "border-white/10 bg-white/5 hover:border-white/20 hover:bg-white/10"
                   }`}
                 >
@@ -343,7 +344,7 @@ export function RegistrationForm() {
                   <div
                     className={`flex h-14 w-14 items-center justify-center rounded-xl transition-all ${
                       watchedTrack === "university"
-                        ? "bg-violet-600/30 text-violet-300"
+                        ? "bg-[var(--nova-primary)]/30 text-[var(--nova-primary)]"
                         : "bg-white/5 text-slate-400 group-hover:text-slate-300"
                     }`}
                   >
@@ -392,7 +393,7 @@ export function RegistrationForm() {
         {currentStep === 2 && (
           <div className="space-y-6 animate-in fade-in slide-in-from-right-4 duration-500">
             <div className="text-center mb-6">
-              <div className="inline-flex items-center gap-1.5 rounded-full bg-violet-600/20 px-3 py-1 text-xs font-medium text-violet-300 mb-4">
+              <div className="inline-flex items-center gap-1.5 rounded-full bg-[var(--nova-primary)]/20 px-3 py-1 text-xs font-medium text-[var(--nova-primary)] mb-4">
                 <Users className="h-3 w-3" />
                 Step 2 of 3
               </div>
@@ -415,7 +416,7 @@ export function RegistrationForm() {
                     <div
                       className={`flex h-8 w-8 items-center justify-center rounded-lg text-sm font-bold ${
                         watchedMembers[index]?.is_leader
-                          ? "bg-amber-500/20 text-amber-300"
+                          ? "bg-[var(--nova-secondary)]/20 text-[var(--nova-secondary)]"
                           : "bg-white/10 text-slate-400"
                       }`}
                     >
@@ -638,14 +639,14 @@ export function RegistrationForm() {
                     key={index}
                     className={`flex items-center gap-4 rounded-lg p-3 transition-all ${
                       member.is_leader
-                        ? "bg-amber-500/10 border border-amber-500/20"
+                        ? "bg-[var(--nova-secondary)]/10 border border-[var(--nova-secondary)]/20"
                         : "bg-white/5 border border-white/5"
                     }`}
                   >
                     <div
                       className={`flex h-10 w-10 items-center justify-center rounded-lg font-bold ${
                         member.is_leader
-                          ? "bg-amber-500/20 text-amber-300"
+                          ? "bg-[var(--nova-secondary)]/20 text-[var(--nova-secondary)]"
                           : "bg-white/10 text-slate-400"
                       }`}
                     >

@@ -1,24 +1,21 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Poppins } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const poppins = Poppins({
+  variable: "--font-poppins",
   subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700", "800", "900"],
 });
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://projectnova.lk"),
-  title: "Project Nova - AIESEC in University of Sri Jayewardenepura",
-  description: "A dynamic tech-based event designed for school and university students, creating a platform where innovation meets opportunity. Organized by AIESEC in University of Sri Jayewardenepura.",
-  keywords: ["Project Nova", "AIESEC", "Sri Jayewardenepura", "tech competition", "student innovation", "youth leadership", "Sri Lanka tech event"],
+  title: "Project Nova - Innovation Meets Opportunity",
+  description: "Sri Lanka's premier inter-university tech innovation competition. LKR 255,000 prize pool. Organized by AIESEC in University of Sri Jayewardenepura.",
+  keywords: ["Project Nova", "AIESEC", "Sri Jayewardenepura", "tech competition", "student innovation", "youth leadership", "Sri Lanka tech event", "startup competition", "hackathon"],
   authors: [{ name: "AIESEC in University of Sri Jayewardenepura" }],
   creator: "AIESEC in University of Sri Jayewardenepura",
   publisher: "Project Nova",
@@ -28,7 +25,7 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://projectnova.lk",
     title: "Project Nova - Innovation Meets Opportunity",
-    description: "A dynamic tech-based event for school and university students connecting passionate young minds with forward-thinking organizations.",
+    description: "Sri Lanka's premier inter-university tech innovation competition connecting passionate young minds with forward-thinking organizations.",
     siteName: "Project Nova",
     images: [
       {
@@ -42,7 +39,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Project Nova - Innovation Meets Opportunity",
-    description: "A dynamic tech-based event for school and university students connecting passionate young minds with forward-thinking organizations.",
+    description: "Sri Lanka's premier inter-university tech innovation competition connecting passionate young minds with forward-thinking organizations.",
     images: ["/og-image.png"],
     creator: "@aiesec_usj",
   },
@@ -70,8 +67,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col bg-slate-950 text-slate-50">
+    <html lang="en" className={`${poppins.variable} h-full antialiased`}>
+      <body className="min-h-full flex flex-col bg-[var(--nova-bg)] text-slate-50">
+        <Script
+          type="module"
+          src="https://unpkg.com/@splinetool/viewer@1.9.82/build/spline-viewer.js"
+          strategy="lazyOnload"
+        />
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />

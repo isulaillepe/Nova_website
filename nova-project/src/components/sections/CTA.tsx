@@ -1,28 +1,28 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Sparkles, Zap, Shield, Globe, Users, Trophy, Calendar } from "lucide-react";
+import { ArrowRight, Sparkles, Trophy, Users, Calendar, Zap } from "lucide-react";
 
 const benefits = [
   { icon: Trophy, text: "LKR 255,000 Prize Pool" },
   { icon: Users, text: "School & University Tracks" },
   { icon: Calendar, text: "2-Phase Competition" },
-  { icon: Sparkles, text: "Industry Mentorship" },
+  { icon: Zap, text: "Industry Mentorship" },
 ];
 
 export function CTA() {
   return (
-    <section id="cta" className="relative py-20 sm:py-28 lg:py-32 bg-slate-950 overflow-hidden">
+    <section id="cta" className="relative py-20 sm:py-28 lg:py-32 bg-[var(--nova-bg)] overflow-hidden">
       <div className="absolute inset-0 -z-10" aria-hidden="true">
-        <div className="absolute top-1/2 left-1/2 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-br from-violet-600/15 to-transparent blur-3xl" />
+        <div className="absolute top-1/2 left-1/2 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-br from-[var(--nova-primary)]/15 to-transparent blur-3xl" />
         <div className="absolute top-0 right-0 h-96 w-96 rounded-full bg-gradient-to-bl from-indigo-600/10 to-transparent blur-3xl" />
         <div className="absolute bottom-0 left-0 h-96 w-96 rounded-full bg-gradient-to-tr from-cyan-600/10 to-transparent blur-3xl" />
       </div>
 
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
         <div className="mb-8 flex items-center justify-center gap-2">
-          <span className="relative inline-flex items-center gap-1.5 rounded-full bg-violet-600/20 px-3 py-1 text-xs font-medium text-violet-300">
-            <span className="h-1.5 w-1.5 rounded-full bg-violet-400 animate-pulse" />
+          <span className="relative inline-flex items-center gap-1.5 rounded-full bg-[var(--nova-primary)]/20 px-3 py-1 text-xs font-medium text-[var(--nova-primary)]">
+            <Sparkles className="h-3 w-3" />
             Registration Open
           </span>
         </div>
@@ -59,7 +59,7 @@ export function CTA() {
         <div className="mt-16 flex flex-wrap items-center justify-center gap-8">
           {benefits.map((benefit) => (
             <div key={benefit.text} className="flex items-center gap-2 text-sm text-slate-300">
-              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/5 text-violet-400">
+              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/5 text-[var(--nova-primary)]">
                 <benefit.icon className="h-4 w-4" />
               </span>
               {benefit.text}
