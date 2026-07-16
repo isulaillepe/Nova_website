@@ -16,8 +16,8 @@ const buttonVariants = cva(
         secondary: "bg-white/5 text-white border border-white/10 hover:bg-white/10 hover:border-white/20",
         ghost: "hover:bg-white/5 hover:text-white text-slate-300",
         link: "text-[var(--nova-primary)] underline-offset-4 hover:underline",
-        gradient: "px-8 py-4 bg-gradient-to-r from-[var(--nova-primary)] to-indigo-600 text-white font-semibold rounded-full hover:opacity-95 active:scale-95 transition-all duration-300 tracking-tight text-center block w-full sm:w-auto shadow-lg shadow-[var(--nova-primary)]/20",
-        accent: "px-8 py-4 bg-[var(--nova-secondary)] text-slate-950 font-bold rounded-full hover:bg-[#e09e12] active:scale-95 transition-all duration-300 tracking-tight text-center block w-full sm:w-auto shadow-lg shadow-[var(--nova-secondary)]/10",
+        gradient: "px-8 py-4 bg-gradient-to-r from-[var(--nova-primary)] to-indigo-600 text-white font-semibold rounded-full hover:opacity-95 active:scale-95 transition-all duration-300 tracking-tight text-center shadow-lg shadow-[var(--nova-primary)]/20",
+        accent: "px-8 py-4 bg-[var(--nova-secondary)] text-slate-950 font-bold rounded-full hover:bg-[#e09e12] active:scale-95 transition-all duration-300 tracking-tight text-center shadow-lg shadow-[var(--nova-secondary)]/10",
       },
       size: {
         default: "h-10 px-4 py-2",
