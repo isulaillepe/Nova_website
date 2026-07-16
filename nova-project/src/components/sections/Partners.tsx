@@ -74,15 +74,15 @@ const ProductTavern = () => (
   </div>
 );
 
-const IIT = () => (
+const USJ = () => (
   <div className="flex items-center gap-3 select-none shrink-0 bg-white/5 border-2 border-white/10 px-5 py-2 rounded-xl">
-    <svg className="w-7 h-7 text-[#C2185B]" viewBox="0 0 24 24" fill="currentColor">
+    <svg className="w-7 h-7 text-[#003599]" viewBox="0 0 24 24" fill="currentColor">
       <path d="M12 2L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-3z" />
-      <circle cx="12" cy="11" r="3" fill="white" />
+      <path d="M12 7l1.5 3h3.5l-2.5 2 1 3.5-3.5-2-3.5 2 1-3.5-2.5-2h3.5z" fill="white" />
     </svg>
     <div className="flex flex-col text-left font-space leading-tight">
-      <span className="text-[11px] font-black text-white tracking-wider">INFORMATICS</span>
-      <span className="text-[9px] font-bold text-slate-400">INSTITUTE OF TECHNOLOGY</span>
+      <span className="text-[11px] font-black text-white tracking-wider">UNIVERSITY OF</span>
+      <span className="text-[9px] font-bold text-slate-400">SRI JAYEWARDENEPURA</span>
     </div>
   </div>
 );
@@ -162,19 +162,17 @@ const UniversityCap = () => (
 
 // --- Row 3 Logos (Scaled Up) ---
 
-const IEEEInnovation = () => (
-  <div className="flex items-center gap-1.5 select-none shrink-0 px-6">
-    <svg className="w-6 h-6 text-violet-400 animate-pulse" viewBox="0 0 24 24" fill="currentColor">
-      <path d="M12 2L2 22h20L12 2zm0 4.5l6.5 13H5.5L12 6.5z" />
-    </svg>
-    <span className="font-space font-extrabold text-violet-300 text-xs tracking-[0.2em]">IEEE INNOVATION NATION</span>
+const AIESECUSJ = () => (
+  <div className="flex items-center gap-2 select-none shrink-0 px-6">
+    <div className="w-5 h-5 rounded-full bg-[#007FC6] flex items-center justify-center text-[10px] font-black text-white">A</div>
+    <span className="font-space font-extrabold text-blue-300 text-xs tracking-[0.25em]">AIESEC IN USJ</span>
   </div>
 );
 
-const IEEEFoundation = () => (
+const AIESECFoundation = () => (
   <div className="flex items-center gap-2 select-none shrink-0 bg-white/5 border-2 border-white/10 px-5 py-2.5 rounded-xl">
-    <span className="font-sans font-black text-[#00629B] text-sm">IEEE</span>
-    <span className="text-[10px] font-bold text-white tracking-[0.25em] font-space border-l-2 border-white/20 pl-2 uppercase">Foundation</span>
+    <span className="font-sans font-black text-[#007FC6] text-sm">AIESEC</span>
+    <span className="text-[10px] font-bold text-white tracking-[0.25em] font-space border-l-2 border-white/20 pl-2 uppercase">Lanka</span>
   </div>
 );
 
@@ -207,14 +205,14 @@ const LankanAngelNetwork = () => (
   </div>
 );
 
-const MediaSocietyIIT = () => (
+const MediaSocietyUSJ = () => (
   <div className="flex items-center gap-2 select-none shrink-0 font-sans text-xs font-bold text-slate-300 uppercase tracking-widest bg-white/5 border-2 border-white/10 px-4 py-2 rounded-lg">
     <svg className="w-5 h-5 text-slate-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
       <circle cx="12" cy="12" r="10" />
       <circle cx="12" cy="12" r="3" />
       <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
     </svg>
-    <span>Media Society of IIT</span>
+    <span>Media Unit of USJ</span>
   </div>
 );
 
@@ -265,7 +263,7 @@ export default function Partners() {
     <Lenichat key="lenichat" />,
     <Dilexus key="dilexus" />,
     <ProductTavern key="producttavern" />,
-    <IIT key="iit" />,
+    <USJ key="usj" />,
   ];
 
   const row2Items = [
@@ -280,13 +278,13 @@ export default function Partners() {
   ];
 
   const row3Items = [
-    <IEEEInnovation key="ieeein" />,
-    <IEEEFoundation key="ieeef" />,
+    <AIESECUSJ key="aiesecusj" />,
+    <AIESECFoundation key="aiesecf" />,
     <LOLC key="lolc" />,
     <ELearningLk key="elearning" />,
     <PearlBay key="pearlbay" />,
     <LankanAngelNetwork key="lankanangel" />,
-    <MediaSocietyIIT key="mediasoc" />,
+    <MediaSocietyUSJ key="mediasocusj" />,
     <Cicada key="cicada" />,
   ];
 

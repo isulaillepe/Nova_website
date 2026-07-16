@@ -13,31 +13,31 @@ interface EventItem {
 
 const EVENTS_DATA: EventItem[] = [
   {
-    name: "CODESPRINT 2.0",
+    name: "PROJECT NOVA 2.0",
     image: "/images/past-events/codesprint_2.png",
     year: "2017",
     description: "The spark that started it all - igniting startup collaboration and team building.",
   },
   {
-    name: "CODESPRINT 3.0",
+    name: "PROJECT NOVA 3.0",
     image: "/images/past-events/codesprint_3.png",
     year: "2019",
     description: "Expanding the horizons with tech pitches in front of elite venture capitalists.",
   },
   {
-    name: "CODESPRINT 4.0",
+    name: "PROJECT NOVA 4.0",
     image: "/images/past-events/codesprint_4.png",
     year: "2021",
     description: "Pioneering the hybrid hackathon model during global digital transformation.",
   },
   {
-    name: "CODESPRINT 5.0",
+    name: "PROJECT NOVA 5.0",
     image: "/images/past-events/codesprint_5.png",
     year: "2023",
     description: "Fostering raw execution with intense 24-hour non-stop building and hacking.",
   },
   {
-    name: "CODESPRINT 7.0",
+    name: "PROJECT NOVA 7.0",
     image: "/images/past-events/codesprint_7.png",
     year: "2025",
     description: "A monumental edition showcasing groundbreaking student-led startup creations.",
@@ -45,7 +45,7 @@ const EVENTS_DATA: EventItem[] = [
 ];
 
 export default function PastEvents() {
-  const [currentIndex, setCurrentIndex] = useState(2); // Start with Codesprint 4.0 (index 2) as active
+  const [currentIndex, setCurrentIndex] = useState(2); // Start with Project Nova 4.0 (index 2) as active
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const sectionRef = useRef<HTMLElement>(null);

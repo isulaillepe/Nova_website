@@ -1,17 +1,20 @@
 "use client";
 
-import { useState, useRef } from "react";
-import { motion, useScroll, useTransform, MotionValue } from "framer-motion";
+import * as React from "react";
+import { useState, useRef, useEffect } from "react";
+import { motion, useScroll, useTransform, useMotionValueEvent, MotionValue } from "framer-motion";
 import Link from "next/link";
-import { Mail, Globe } from "lucide-react";
-import { FaLinkedinIn, FaFacebookF, FaYoutube, FaInstagram } from "react-icons/fa";
+import { Mail } from "lucide-react";
+import { FaLinkedinIn, FaFacebookF, FaYoutube, FaInstagram, FaTiktok, FaWhatsapp } from "react-icons/fa";
 
 const socialLinks = [
-  { icon: FaLinkedinIn, href: "https://linkedin.com", label: "LinkedIn" },
+  { icon: Mail, href: "mailto:projectnova.usj@gmail.com", label: "Mail" },
   { icon: FaFacebookF, href: "https://facebook.com", label: "Facebook" },
-  { icon: FaYoutube, href: "https://youtube.com", label: "YouTube" },
   { icon: FaInstagram, href: "https://instagram.com", label: "Instagram" },
-  { icon: Globe, href: "https://codesplash.lk", label: "Website" },
+  { icon: FaWhatsapp, href: "https://wa.me/94771234567", label: "WhatsApp" },
+  { icon: FaLinkedinIn, href: "https://linkedin.com", label: "LinkedIn" },
+  { icon: FaYoutube, href: "https://youtube.com", label: "YouTube" },
+  { icon: FaTiktok, href: "https://tiktok.com", label: "TikTok" },
 ];
 
 const faqItems = [
@@ -118,8 +121,6 @@ function FaqItem({ item, index, openIndex, setOpenIndex, scrollYProgress }: FaqI
 }
 
 export default function Faq() {
-  // containerRef scopes useScroll ONLY to the sticky scroll-jacked part.
-  // The footer lives outside this ref in normal document flow.
   const containerRef = useRef<HTMLDivElement>(null);
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
@@ -128,31 +129,87 @@ export default function Faq() {
     offset: ["start start", "end end"],
   });
 
-  // Background cross-fade: cosmic → egyptian
+  // Track progress via ref for scroll-locking logic using Framer Motion event hook
+  const progressRef = useRef(0);
+  useMotionValueEvent(scrollYProgress, "change", (latest) => {
+    progressRef.current = latest;
+  });
+
+  // Scroll locking: stop scroll down at 0.70 progress to keep footer permanent
+  useEffect(() => {
+    let touchStartY = 0;
+
+    const handleTouchStart = (e: TouchEvent) => {
+      if (e.touches.length > 0) {
+        touchStartY = e.touches[0].clientY;
+      }
+    };
+
+    const handleTouchMove = (e: TouchEvent) => {
+      if (progressRef.current >= 0.70 && e.touches.length > 0) {
+        const touchY = e.touches[0].clientY;
+        const deltaY = touchStartY - touchY; // positive deltaY = scrolling down
+        
+        if (deltaY > 0) {
+          e.preventDefault();
+        }
+      }
+    };
+
+    const handleWheel = (e: WheelEvent) => {
+      if (progressRef.current >= 0.70 && e.deltaY > 0) {
+        e.preventDefault();
+      }
+    };
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (progressRef.current >= 0.70) {
+        const keys = ["ArrowDown", "PageDown", " ", "End"];
+        if (keys.includes(e.key)) {
+          e.preventDefault();
+        }
+      }
+    };
+
+    window.addEventListener("touchstart", handleTouchStart, { passive: true });
+    window.addEventListener("touchmove", handleTouchMove, { passive: false });
+    window.addEventListener("wheel", handleWheel, { passive: false });
+    window.addEventListener("keydown", handleKeyDown, { passive: false });
+
+    return () => {
+      window.removeEventListener("touchstart", handleTouchStart);
+      window.removeEventListener("touchmove", handleTouchMove);
+      window.removeEventListener("wheel", handleWheel);
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
+
+  // Background cross-fade: cosmic → rocket
   const cosmicBgScale = useTransform(scrollYProgress, [0, 0.35], [1.0, 1.08]);
-  const egyptBgScale = useTransform(scrollYProgress, [0.35, 0.70], [1.08, 1.0]);
+  const rocketBgScale = useTransform(scrollYProgress, [0.35, 0.70], [1.08, 1.0]);
   const cosmicBgOpacity = useTransform(scrollYProgress, [0.25, 0.45], [1, 0]);
-  const egyptBgOpacity = useTransform(scrollYProgress, [0.25, 0.45], [0, 1]);
+  const rocketBgOpacity = useTransform(scrollYProgress, [0.25, 0.45], [0, 1]);
 
   // FAQ content fades out first
   const faqContentOpacity = useTransform(scrollYProgress, [0.20, 0.40], [1, 0]);
   const faqHeaderY = useTransform(scrollYProgress, [0.20, 0.40], ["0px", "-60px"]);
   const faqPointerEvents = useTransform(scrollYProgress, (v) => v > 0.40 ? "none" : "auto");
   const faqVisibility = useTransform(scrollYProgress, (v) => v > 0.42 ? "hidden" : "visible");
+  const cosmicBgVisibility = useTransform(scrollYProgress, (v) => v > 0.42 ? "hidden" : "visible");
 
-  // Register section fades in and stays at 1.0 for the rest of the section
+  // Register section and footer fade in together between 0.50 and 0.70
   const registerOpacity = useTransform(scrollYProgress, [0.50, 0.70], [0, 1]);
   const registerY = useTransform(scrollYProgress, [0.50, 0.70], ["30px", "0px"]);
   const registerPointerEvents = useTransform(scrollYProgress, (v) => v >= 0.70 ? "auto" : "none");
 
-  return (
-    <section id="faq">
+  const footerScale = useTransform(scrollYProgress, [0.50, 0.70], [0.95, 1.0]);
 
-      {/* ── Sticky scroll-jacked zone: FAQ items + Register CTA ── */}
-      {/* containerRef is scoped only here so scroll progress [0→1] maps
-          exactly to this div's scroll range. Nothing below is affected. */}
-      <div ref={containerRef} className="relative h-[300vh]">
-        <div className="sticky top-0 h-screen w-full overflow-hidden select-none">
+  return (
+    <section id="faq" className="relative z-10">
+      
+      {/* Pinned scroll container */}
+      <div ref={containerRef} className="relative h-[300vh] z-10">
+        <div className="sticky top-0 h-screen w-full overflow-hidden select-none z-10">
 
           {/* Backgrounds */}
           <div className="absolute inset-0 z-0">
@@ -161,18 +218,20 @@ export default function Faq() {
                 backgroundImage: "url('/images/cosmic_faq_bg.png')",
                 scale: cosmicBgScale,
                 opacity: cosmicBgOpacity,
+                visibility: cosmicBgVisibility,
+                filter: "brightness(0.4)",
               }}
-              className="absolute inset-0 bg-cover bg-center origin-center"
+              className="absolute inset-0 bg-cover bg-center origin-center z-0"
             />
             <motion.div
               style={{
-                backgroundImage: "url('/images/egyptian_register_bg.png')",
-                scale: egyptBgScale,
-                opacity: egyptBgOpacity,
+                backgroundImage: "url('/images/rocket_launch_bg.png')",
+                scale: rocketBgScale,
+                opacity: rocketBgOpacity,
+                filter: "brightness(0.4)",
               }}
-              className="absolute inset-0 bg-cover bg-center origin-center"
+              className="absolute inset-0 bg-cover bg-center origin-center z-10"
             />
-            <div className="absolute inset-0 bg-slate-950/60 pointer-events-none" />
           </div>
 
           {/* FAQ content */}
@@ -205,109 +264,75 @@ export default function Faq() {
             </div>
           </motion.div>
 
-          {/* Register CTA — fades in over the Egyptian bg, stays until section ends */}
+          {/* Register CTA / Project Nova Description — fades in concurrently with the footer */}
           <motion.div
             style={{ opacity: registerOpacity, y: registerY, pointerEvents: registerPointerEvents }}
             className="absolute inset-0 z-20 flex flex-col items-center justify-center px-4"
           >
-            <div className="text-center max-w-3xl flex flex-col items-center justify-center">
-              <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-orbitron font-black tracking-widest text-white mb-8 [text-shadow:0_0_30px_rgba(255,255,255,0.18)] select-none">
-                READY TO DIVE IN?
-              </h2>
-              <div className="flex justify-center">
-                <Link href="/register" className="relative group cursor-pointer inline-block">
-                  <div className="absolute inset-0 rounded-full bg-[#FF5533] opacity-35 blur-xl group-hover:opacity-60 transition-opacity duration-300" />
-                  <button className="relative px-12 py-5 rounded-full bg-[#FF5533] hover:bg-[#e04422] text-white font-space font-bold text-base tracking-widest uppercase transition-all duration-300 shadow-[0_0_25px_rgba(255,85,51,0.45)] hover:shadow-[0_0_35px_rgba(255,85,51,0.7)] hover:scale-105 active:scale-95 cursor-pointer">
-                    REGISTER NOW
-                  </button>
-                </Link>
-              </div>
+            <div className="text-center max-w-3xl flex flex-col items-center justify-center z-10">
+              <p className="text-white text-center text-xs sm:text-sm md:text-[15px] font-medium leading-relaxed max-w-2xl px-6 select-none opacity-85 tracking-wide">
+                Join Project Nova — an inter-university startup competition by AIESEC in USJ. Transform your ideas into real-world ventures and compete for recognition, mentorship, and startup support.
+              </p>
             </div>
+
+            {/* Fading In High-Fidelity Footer (fades in together with register now) */}
+            <motion.div
+              style={{
+                opacity: registerOpacity,
+                y: registerY,
+                scale: footerScale,
+                pointerEvents: registerPointerEvents,
+              }}
+              className="absolute bottom-8 left-0 right-0 z-30 w-full"
+            >
+              <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center md:items-end justify-between gap-6 px-6 sm:px-8">
+                
+                {/* Left Column: System Status & Coordinates */}
+                <div className="flex flex-col items-center md:items-start gap-1 select-none text-center md:text-left font-space">
+                  <div className="flex items-center gap-1.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#FF5533] shadow-[0_0_8px_#FF5533] animate-pulse" />
+                    <span className="text-[#FF5533] font-bold text-[10px] sm:text-xs tracking-widest uppercase">SYS.ONLINE</span>
+                  </div>
+                  <span className="text-[9px] sm:text-[10px] text-slate-500 font-mono tracking-wider">6.9271° N   79.8612° E</span>
+                </div>
+
+                {/* Middle Column: Comms link & Social icons */}
+                <div className="flex flex-col items-center gap-2">
+                  <span className="text-[8px] sm:text-[9px] font-mono font-bold tracking-[0.25em] text-slate-500 uppercase select-none">COMMS_LINK</span>
+                  <div className="flex items-center justify-center gap-2 sm:gap-3">
+                    {socialLinks.map((social) => (
+                      <a
+                        key={social.label}
+                        href={social.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex h-9.5 w-9.5 items-center justify-center rounded-md bg-slate-950/40 border border-white/5 text-slate-400 hover:text-white hover:border-[#FF5533]/40 hover:bg-[#FF5533]/10 transition-all duration-300"
+                        aria-label={social.label}
+                      >
+                        <social.icon className="h-4 w-4" />
+                      </a>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Right Column: Project Nova Logo & Copyright */}
+                <div className="flex flex-col items-center md:items-end gap-1 text-center md:text-right select-none font-space">
+                  <div className="font-extrabold text-sm sm:text-base tracking-wider uppercase">
+                    <span className="text-white">PROJECT</span>
+                    <span className="text-[#FF5533] ml-1">NOVA</span>
+                  </div>
+                  <div className="text-[8px] sm:text-[9px] text-slate-500 font-medium tracking-widest uppercase leading-tight">
+                    COPYRIGHT © 2026 <br />
+                    AIESEC IN USJ // DESIGN UNIT
+                  </div>
+                </div>
+
+              </div>
+            </motion.div>
           </motion.div>
 
         </div>
       </div>
-
-      {/* ── Permanent static footer ─────────────────────────────────────
-           This lives OUTSIDE the sticky scroll container in normal document
-           flow. It is NEVER animated by scroll progress — it simply appears
-           when the user scrolls past the sticky section, and stays there
-           permanently. No fade-out, no cosmic-bg overlap possible.       ── */}
-      <footer className="relative flex flex-col items-center justify-center gap-5 py-14 px-4 text-center overflow-hidden">
-
-        {/* Egyptian background — matches the register section above */}
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: "url('/images/egyptian_register_bg.png')" }}
-        />
-        <div className="absolute inset-0 bg-slate-950/70" />
-
-        {/* Content */}
-        <div className="relative z-10 flex flex-col items-center gap-4 max-w-4xl w-full">
-
-          {/* Quote */}
-          <p className="text-slate-300 font-cormorant italic text-sm sm:text-base md:text-lg lg:text-xl font-medium tracking-wide max-w-xl">
-            &ldquo;Every great journey begins with a conversation&rdquo;
-          </p>
-
-          {/* Email pills */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-            <a
-              href="mailto:uok.cssa@gmail.com"
-              className="flex items-center gap-2 px-5 py-2.5 rounded-full border border-white/10 bg-slate-950/40 backdrop-blur-sm text-slate-300 hover:text-white hover:border-[#FF5533]/50 hover:shadow-[0_0_15px_rgba(255,85,51,0.2)] transition-all duration-300 font-space text-[10px] sm:text-xs font-bold tracking-widest uppercase"
-            >
-              <Mail className="h-3.5 w-3.5 text-[#FF5533]" />
-              <span>uok.cssa@gmail.com</span>
-            </a>
-            <a
-              href="mailto:codesplash.cssa@gmail.com"
-              className="flex items-center gap-2 px-5 py-2.5 rounded-full border border-white/10 bg-slate-950/40 backdrop-blur-sm text-slate-300 hover:text-white hover:border-[#FF5533]/50 hover:shadow-[0_0_15px_rgba(255,85,51,0.2)] transition-all duration-300 font-space text-[10px] sm:text-xs font-bold tracking-widest uppercase"
-            >
-              <Mail className="h-3.5 w-3.5 text-[#FF5533]" />
-              <span>codesplash.cssa@gmail.com</span>
-            </a>
-          </div>
-
-          {/* Social media icons */}
-          <div className="flex items-center justify-center gap-4">
-            {socialLinks.map((social) => (
-              <a
-                key={social.label}
-                href={social.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex h-10 w-10 items-center justify-center rounded-full bg-slate-950/40 border border-white/10 text-slate-300 hover:text-[#FF5533] hover:border-[#FF5533]/40 hover:bg-[#FF5533]/10 transition-all duration-300"
-                aria-label={social.label}
-              >
-                <social.icon className="h-4 w-4" />
-              </a>
-            ))}
-          </div>
-
-          {/* Logo */}
-          <div className="flex items-center justify-center gap-3 text-white mt-1">
-            <div className="flex items-center gap-2 select-none">
-              <svg className="h-7 w-auto text-white" viewBox="0 0 24 36" fill="currentColor">
-                <path d="M12 0C7.58 0 4 3.58 4 8c0 3.31 2.03 6.14 4.9 7.37L8 16.5c0 .28.22.5.5.5h2v6H6.5c-.28 0-.5.22-.5.5v2c0 .28.22.5.5.5H10.5v10c0 .28.22.5.5.5h2c.28 0 .5-.22.5-.5V26h4c.28 0 .5-.22.5-.5v-2c0-.28-.22-.5-.5-.5H13.5v-6h2c.28 0 .5-.22.5-.5l-.9-1.13C17.97 14.14 20 11.31 20 8c0-4.42-3.58-8-8-8zm0 13c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z" />
-              </svg>
-              <span className="font-space font-black text-xl sm:text-2xl tracking-wider">CSSA</span>
-            </div>
-            <div className="h-6 w-px bg-white/20" />
-            <div className="flex flex-col text-left font-space leading-tight select-none">
-              <span className="text-[8px] sm:text-[9px] font-black text-white tracking-widest uppercase">COMPUTER SCIENCE STUDENTS&apos; ASSOCIATION</span>
-              <span className="text-[6.5px] sm:text-[7px] font-bold text-slate-400 tracking-wider uppercase">UNIVERSITY OF KELANIYA</span>
-            </div>
-          </div>
-
-          {/* Divider */}
-          <div className="w-full max-w-md h-px bg-white/10" />
-
-          {/* Copyright */}
-          <p className="text-[7.5px] sm:text-[8px] font-space font-bold tracking-widest text-slate-500 uppercase select-none">
-            © CodeSplash 2026. | All Rights Reserved. | Organized by Faculty of Computing and Technology, University of Kelaniya.
-          </p>
-        </div>
-      </footer>
 
     </section>
   );

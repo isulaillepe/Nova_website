@@ -240,7 +240,7 @@ export function Features() {
                     {(step.step === "04" || step.step === "06") && (
                       <div className="absolute top-[calc(100%+12px)] left-0 right-0 text-center pointer-events-none">
                         <span className="text-[#FF5533] font-black text-xl sm:text-2xl md:text-3xl uppercase tracking-widest block font-space drop-shadow-[0_0_10px_rgba(255,85,51,0.35)]">
-                          {step.step === "04" ? "30th of August" : "31st of July"}
+                          {step.step === "04" ? "31st of July" : "30th of August"}
                         </span>
                       </div>
                     )}
