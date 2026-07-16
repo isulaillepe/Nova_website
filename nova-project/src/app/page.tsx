@@ -1,21 +1,25 @@
-import { Hero } from "@/components/sections/Hero";
-import { Stats } from "@/components/sections/Stats";
+import Hero from "@/components/hero/Hero";
+import Stats from "@/components/sections/Stats";
+import WhoCanCompete from "@/components/sections/WhoCanCompete";
 import { Features } from "@/components/sections/Features";
-import { About } from "@/components/sections/About";
-import { Testimonials } from "@/components/sections/Testimonials";
-import { Partners } from "@/components/sections/Partners";
-import { CTA } from "@/components/sections/CTA";
+import { Showcase } from "@/components/sections/Showcase";
+import PastEvents from "@/components/sections/PastEvents";
+import OrganizingCommittee from "@/components/sections/OrganizingCommittee";
+import Faq from "@/components/sections/Faq";
+import Partners from "@/components/sections/Partners";
 
 export default function Home() {
   return (
     <>
       <Hero />
       <Stats />
+      <WhoCanCompete />
       <Features />
-      <About />
-      <Testimonials />
+      <Showcase />
+      <PastEvents />
       <Partners />
-      <CTA />
+      <OrganizingCommittee />
+      <Faq />
     </>
   );
 }

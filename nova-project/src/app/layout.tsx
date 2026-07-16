@@ -1,49 +1,66 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Poppins, Space_Grotesk, Cormorant_Garamond, Orbitron } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const poppins = Poppins({
+  variable: "--font-poppins",
   subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700", "800", "900"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const spaceGrotesk = Space_Grotesk({
+  variable: "--font-space-grotesk",
   subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+});
+
+const cormorantGaramond = Cormorant_Garamond({
+  variable: "--font-cormorant-garamond",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  style: ["normal", "italic"],
+});
+
+const orbitron = Orbitron({
+  variable: "--font-orbitron",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800", "900"],
 });
 
 export const metadata: Metadata = {
-  title: "Nova - Build, Deploy, Scale",
-  description: "The complete platform for modern application development. Deploy, scale, and manage your applications with confidence on infrastructure trusted by innovative teams worldwide.",
-  keywords: ["cloud platform", "edge computing", "serverless", "deployment", "database", "developer tools"],
-  authors: [{ name: "Nova" }],
-  creator: "Nova",
-  publisher: "Nova",
+  metadataBase: new URL("https://projectnova.lk"),
+  title: "Project Nova - Innovation Meets Opportunity",
+  description: "Sri Lanka's premier inter-university tech innovation competition. LKR 255,000 prize pool. Organized by AIESEC in University of Sri Jayewardenepura.",
+  keywords: ["Project Nova", "AIESEC", "Sri Jayewardenepura", "tech competition", "student innovation", "youth leadership", "Sri Lanka tech event", "startup competition", "hackathon"],
+  authors: [{ name: "AIESEC in University of Sri Jayewardenepura" }],
+  creator: "AIESEC in University of Sri Jayewardenepura",
+  publisher: "Project Nova",
   robots: "index, follow",
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://nova.io",
-    title: "Nova - Build, Deploy, Scale",
-    description: "The complete platform for modern application development.",
-    siteName: "Nova",
+    url: "https://projectnova.lk",
+    title: "Project Nova - Innovation Meets Opportunity",
+    description: "Sri Lanka's premier inter-university tech innovation competition connecting passionate young minds with forward-thinking organizations.",
+    siteName: "Project Nova",
     images: [
       {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Nova Platform",
+        alt: "Project Nova - AIESEC in University of Sri Jayewardenepura",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Nova - Build, Deploy, Scale",
-    description: "The complete platform for modern application development.",
+    title: "Project Nova - Innovation Meets Opportunity",
+    description: "Sri Lanka's premier inter-university tech innovation competition connecting passionate young minds with forward-thinking organizations.",
     images: ["/og-image.png"],
-    creator: "@nova",
+    creator: "@aiesec_usj",
   },
   icons: {
     icon: "/favicon.ico",
@@ -69,8 +86,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col bg-slate-950 text-slate-50">
+    <html lang="en" className={`${poppins.variable} ${spaceGrotesk.variable} ${cormorantGaramond.variable} ${orbitron.variable} min-h-screen antialiased`}>
+      <body className="min-h-screen flex flex-col bg-[var(--nova-bg)] text-slate-50">
+        <Script
+          type="module"
+          src="https://unpkg.com/@splinetool/viewer@1.9.82/build/spline-viewer.js"
+          strategy="lazyOnload"
+        />
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />

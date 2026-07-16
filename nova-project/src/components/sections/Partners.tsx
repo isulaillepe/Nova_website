@@ -1,118 +1,341 @@
 "use client";
 
-const partners = [
-  { name: "Vercel", logo: "vercel", category: "Platform" },
-  { name: "Linear", logo: "linear", category: "Productivity" },
-  { name: "Notion", logo: "notion", category: "Productivity" },
-  { name: "Figma", logo: "figma", category: "Design" },
-  { name: "Stripe", logo: "stripe", category: "Payments" },
-  { name: "GitHub", logo: "github", category: "Development" },
-  { name: "OpenAI", logo: "openai", category: "AI" },
-  { name: "Anthropic", logo: "anthropic", category: "AI" },
-  { name: "Supabase", logo: "supabase", category: "Database" },
-  { name: "Prisma", logo: "prisma", category: "Database" },
-  { name: "Tailwind", logo: "tailwind", category: "CSS" },
-  { name: "Next.js", logo: "nextjs", category: "Framework" },
-];
+import React from "react";
 
-const integrations = [
-  { name: "GitHub Actions", description: "Native CI/CD integration", category: "CI/CD" },
-  { name: "GitLab CI", description: "Deploy from GitLab", category: "CI/CD" },
-  { name: "Vercel", description: "Zero-config deployments", category: "Platform" },
-  { name: "Netlify", description: "Static site hosting", category: "Platform" },
-  { name: "Docker", description: "Container deployments", category: "Containers" },
-  { name: "Kubernetes", description: "Orchestration support", category: "Containers" },
-  { name: "Terraform", description: "Infrastructure as code", category: "IaC" },
-  { name: "Pulumi", description: "Modern IaC platform", category: "IaC" },
-  { name: "Datadog", description: "APM & monitoring", category: "Observability" },
-  { name: "Sentry", description: "Error tracking", category: "Observability" },
-  { name: "LogRocket", description: "Session replay", category: "Observability" },
-  { name: "PostHog", description: "Product analytics", category: "Analytics" },
-];
+// --- High-Fidelity Brand Logos as Inline Components (Scaled Up) ---
 
-export function Partners() {
+const OmniAI = () => (
+  <div className="flex items-center gap-1.5 font-space text-2xl sm:text-3xl select-none shrink-0 px-6">
+    <span className="font-light text-slate-400">Omni</span>
+    <span className="font-extrabold text-[#FF5533]">AI</span>
+  </div>
+);
+
+const CreativeSoftware = () => (
+  <div className="flex items-center gap-3 select-none shrink-0 px-6">
+    <svg className="w-8 h-8 text-[#E91E63]" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M3.5 18.5V5.5L16.5 12L3.5 18.5Z" />
+      <path d="M7.5 18.5L20.5 12L16.5 12L3.5 18.5H7.5Z" opacity="0.5" />
+    </svg>
+    <span className="font-sans font-bold text-white text-lg sm:text-xl tracking-tight">
+      Creative <span className="text-[#E91E63] font-semibold">Software</span>
+    </span>
+  </div>
+);
+
+const WSO2 = () => (
+  <div className="flex items-center gap-3 select-none shrink-0 px-6">
+    <svg className="w-8 h-8 text-[#F47B20]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="1.5" />
+      <path d="M7 12h2.5l1.5-3 2 6 1.5-3H17" />
+    </svg>
+    <span className="font-space font-extrabold text-[#F47B20] text-xl sm:text-2xl tracking-tight">WSO2</span>
+  </div>
+);
+
+const Belta = () => (
+  <div className="flex items-center justify-center select-none shrink-0 px-8 py-2 bg-[#A81F26] border border-white/20 rounded-full shadow-[0_0_15px_rgba(168,31,38,0.3)]">
+    <span className="font-serif font-extrabold text-white text-sm sm:text-base tracking-[0.2em]">BELTA</span>
+  </div>
+);
+
+const Lenichat = () => (
+  <div className="flex items-center gap-2 select-none shrink-0 px-6">
+    <svg className="w-7 h-7 text-[#D946EF]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+      <circle cx="9" cy="10" r="1.5" fill="currentColor" />
+      <circle cx="12" cy="10" r="1.5" fill="currentColor" />
+      <circle cx="15" cy="10" r="1.5" fill="currentColor" />
+    </svg>
+    <span className="font-space font-bold text-[#D946EF] text-lg sm:text-xl">lenichat</span>
+  </div>
+);
+
+const Dilexus = () => (
+  <div className="flex items-center gap-2.5 select-none shrink-0 px-6">
+    <svg className="w-7 h-7 text-[#8B5CF6]" viewBox="0 0 24 24" fill="currentColor">
+      <rect x="2" y="2" width="5" height="5" />
+      <rect x="9" y="2" width="5" height="5" />
+      <rect x="16" y="2" width="5" height="5" />
+      <rect x="16" y="9" width="5" height="5" />
+      <rect x="16" y="16" width="5" height="5" />
+      <rect x="9" y="16" width="5" height="5" />
+      <rect x="2" y="16" width="5" height="5" />
+      <rect x="2" y="9" width="5" height="5" />
+    </svg>
+    <span className="font-space font-bold text-white text-base sm:text-lg tracking-[0.25em] uppercase">Dilexus</span>
+  </div>
+);
+
+const ProductTavern = () => (
+  <div className="flex items-center select-none shrink-0 bg-white/95 border-2 border-slate-300 rounded-md px-4 py-1 font-sans text-xs sm:text-sm h-8 sm:h-9">
+    <span className="font-light text-slate-800 pr-1.5">product</span>
+    <span className="font-extrabold text-slate-900 bg-[#EAB308]/90 px-1.5 py-0.5 rounded-sm">tavern</span>
+  </div>
+);
+
+const IIT = () => (
+  <div className="flex items-center gap-3 select-none shrink-0 bg-white/5 border-2 border-white/10 px-5 py-2 rounded-xl">
+    <svg className="w-7 h-7 text-[#C2185B]" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 2L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-3z" />
+      <circle cx="12" cy="11" r="3" fill="white" />
+    </svg>
+    <div className="flex flex-col text-left font-space leading-tight">
+      <span className="text-[11px] font-black text-white tracking-wider">INFORMATICS</span>
+      <span className="text-[9px] font-bold text-slate-400">INSTITUTE OF TECHNOLOGY</span>
+    </div>
+  </div>
+);
+
+// --- Row 2 Logos (Scaled Up) ---
+
+const GenerationAlpha = () => (
+  <div className="flex flex-col text-left font-sans select-none shrink-0 px-6">
+    <span className="font-black text-white text-sm sm:text-base tracking-widest">GENERATION ALPHA</span>
+    <span className="font-light text-slate-500 text-[8px] sm:text-[9px] tracking-[0.25em] mt-1">FOR A BETTER TOMORROW</span>
+  </div>
+);
+
+const Zone247 = () => (
+  <div className="flex items-center gap-1.5 select-none font-space text-lg sm:text-xl shrink-0 px-6">
+    <span className="font-extrabold text-white">ZONE</span>
+    <span className="font-light text-slate-400">24x7</span>
+  </div>
+);
+
+const Kotmale = () => (
+  <div className="flex items-center gap-2.5 select-none shrink-0 bg-[#0F2D6B] border-2 border-blue-500/25 px-5 py-2 rounded-full shadow-[0_0_15px_rgba(15,45,107,0.4)]">
+    <div className="w-4 h-4 rounded-full bg-emerald-500/25 border border-emerald-400 flex items-center justify-center">
+      <div className="w-2.5 h-2.5 rounded-full bg-emerald-400" />
+    </div>
+    <span className="font-serif font-black text-white text-sm sm:text-base tracking-wide">Kotmale</span>
+  </div>
+);
+
+const BuildClub = () => (
+  <div className="flex items-center gap-2.5 select-none shrink-0 px-6">
+    <div className="flex gap-1">
+      <span className="w-5 h-5 rounded-full bg-blue-500/30 border-2 border-blue-500 flex items-center justify-center text-[10px] font-bold text-blue-300">+</span>
+      <span className="w-5 h-5 rounded-full bg-purple-500/30 border-2 border-purple-500 flex items-center justify-center text-[10px] font-bold text-purple-300">x</span>
+      <span className="w-5 h-5 rounded-full bg-orange-500/30 border-2 border-orange-500 flex items-center justify-center text-[10px] font-bold text-orange-300">o</span>
+    </div>
+    <span className="font-space font-extrabold text-white text-sm sm:text-base tracking-tight">BUILD CLUB</span>
+  </div>
+);
+
+const CeylonToday = () => (
+  <div className="flex flex-col items-center select-none shrink-0 px-4">
+    <div className="bg-[#0284C7]/90 px-4 py-1.5 text-center border-2 border-[#0284C7]/20 rounded-md">
+      <span className="font-sans font-black text-white text-xs sm:text-sm tracking-widest">CEYLON TODAY</span>
+    </div>
+    <span className="text-[7px] sm:text-[8px] font-bold text-[#F97316] tracking-widest mt-1.5 font-space">PRINT MEDIA PARTNER</span>
+  </div>
+);
+
+const SinhalaSponsor = () => (
+  <div className="flex items-center gap-2 select-none shrink-0 bg-white/5 border-2 border-white/10 px-5 py-2 rounded-xl">
+    <div className="grid grid-cols-2 gap-1">
+      <div className="w-2.5 h-2.5 rounded-full bg-[#E11D48]" />
+      <div className="w-2.5 h-2.5 rounded-full bg-[#EAB308]" />
+      <div className="w-2.5 h-2.5 rounded-full bg-[#16A34A]" />
+      <div className="w-2.5 h-2.5 rounded-full bg-[#2563EB]" />
+    </div>
+    <span className="text-xs sm:text-sm font-black text-slate-300 font-sans leading-none">හෙළ යුගය</span>
+  </div>
+);
+
+const HackathonsLk = () => (
+  <div className="flex items-center select-none shrink-0 font-sans text-sm sm:text-base px-6">
+    <span className="font-black text-white">HackAthons</span>
+    <span className="bg-[#06B6D4] text-slate-950 font-bold px-1.5 py-0.5 rounded-sm ml-1 text-[11px] sm:text-xs">.lk</span>
+  </div>
+);
+
+const UniversityCap = () => (
+  <div className="flex items-center select-none shrink-0 bg-[#0F172A] border-2 border-white/15 p-2 rounded-xl">
+    <svg className="w-6 h-6 text-slate-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+      <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+      <path d="M6 12v5c0 1.5 2 2.5 6 2.5s6-1 6-2.5v-5" />
+    </svg>
+  </div>
+);
+
+// --- Row 3 Logos (Scaled Up) ---
+
+const IEEEInnovation = () => (
+  <div className="flex items-center gap-1.5 select-none shrink-0 px-6">
+    <svg className="w-6 h-6 text-violet-400 animate-pulse" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 2L2 22h20L12 2zm0 4.5l6.5 13H5.5L12 6.5z" />
+    </svg>
+    <span className="font-space font-extrabold text-violet-300 text-xs tracking-[0.2em]">IEEE INNOVATION NATION</span>
+  </div>
+);
+
+const IEEEFoundation = () => (
+  <div className="flex items-center gap-2 select-none shrink-0 bg-white/5 border-2 border-white/10 px-5 py-2.5 rounded-xl">
+    <span className="font-sans font-black text-[#00629B] text-sm">IEEE</span>
+    <span className="text-[10px] font-bold text-white tracking-[0.25em] font-space border-l-2 border-white/20 pl-2 uppercase">Foundation</span>
+  </div>
+);
+
+const LOLC = () => (
+  <div className="flex items-center select-none shrink-0 bg-[#0A5A9C] px-5 py-1.5 border-2 border-white/15 rounded-md shadow-[0_0_15px_rgba(10,90,156,0.3)]">
+    <span className="font-sans font-black text-white text-sm sm:text-base tracking-[0.15em]">LOLC</span>
+  </div>
+);
+
+const ELearningLk = () => (
+  <div className="flex items-center select-none shrink-0 bg-white border-2 border-slate-300 px-4 py-1 rounded-md font-sans text-xs sm:text-sm">
+    <span className="font-light text-rose-600 font-black text-sm">e</span>
+    <span className="font-extrabold text-slate-900 pl-0.5">Learning.lk</span>
+  </div>
+);
+
+const PearlBay = () => (
+  <div className="flex items-center gap-1.5 select-none shrink-0 px-6">
+    <span className="font-serif italic font-black text-[#F43F5E] text-lg sm:text-xl">Pearl</span>
+    <span className="font-serif italic font-extrabold text-[#06B6D4] text-lg sm:text-xl">Bay</span>
+  </div>
+);
+
+const LankanAngelNetwork = () => (
+  <div className="flex items-center gap-2 select-none shrink-0 font-sans text-xs px-6">
+    <svg className="w-5 h-5 text-amber-500" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 2L2 22h20L12 2zm0 3.5l6.5 13H5.5L12 5.5z" />
+    </svg>
+    <span className="font-extrabold text-slate-200 tracking-wider">Lankan Angel Network</span>
+  </div>
+);
+
+const MediaSocietyIIT = () => (
+  <div className="flex items-center gap-2 select-none shrink-0 font-sans text-xs font-bold text-slate-300 uppercase tracking-widest bg-white/5 border-2 border-white/10 px-4 py-2 rounded-lg">
+    <svg className="w-5 h-5 text-slate-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+      <circle cx="12" cy="12" r="10" />
+      <circle cx="12" cy="12" r="3" />
+      <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+    </svg>
+    <span>Media Society of IIT</span>
+  </div>
+);
+
+const Cicada = () => (
+  <div className="flex flex-col items-center select-none shrink-0 font-serif text-xs px-6">
+    <span className="font-black tracking-[0.25em] text-slate-300">CICADA</span>
+    <span className="text-[7px] tracking-widest text-slate-500 font-sans mt-0.5">ESTD 2020</span>
+  </div>
+);
+
+// --- Marquee Row Component ---
+
+interface MarqueeRowProps {
+  children: React.ReactNode[];
+  direction: "left" | "right";
+  speed?: number;
+}
+
+function MarqueeRow({ children, direction, speed = 35 }: MarqueeRowProps) {
+  const directionClass = direction === "left" ? "animate-marquee-left" : "animate-marquee-right";
   return (
-    <section id="partners" className="py-20 sm:py-28 bg-slate-950 border-t border-white/5">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="mb-16 text-center">
-          <div className="mb-4 flex items-center justify-center gap-2">
-            <span className="inline-flex items-center gap-1.5 rounded-full bg-violet-600/20 px-3 py-1 text-xs font-medium text-violet-300">
-              Trusted by innovators
-            </span>
-          </div>
-          <h2 className="mb-4 text-3xl font-bold tracking-tight text-white sm:text-4xl md:text-5xl">
-            Used by the world&apos;s best teams
+    <div className="relative flex overflow-hidden w-full select-none marquee-row bg-black/20">
+      <div 
+        className={`flex items-center gap-16 sm:gap-24 min-w-full shrink-0 ${directionClass} py-6 sm:py-8`}
+        style={{ animationDuration: `${speed}s` }}
+      >
+        {children}
+      </div>
+      <div 
+        className={`flex items-center gap-16 sm:gap-24 min-w-full shrink-0 ${directionClass} py-6 sm:py-8`}
+        style={{ animationDuration: `${speed}s` }}
+        aria-hidden="true"
+      >
+        {children}
+      </div>
+    </div>
+  );
+}
+
+// --- Main Partners Section ---
+
+export default function Partners() {
+  const row1Items = [
+    <OmniAI key="omniai" />,
+    <CreativeSoftware key="creative" />,
+    <WSO2 key="wso2" />,
+    <Belta key="belta" />,
+    <Lenichat key="lenichat" />,
+    <Dilexus key="dilexus" />,
+    <ProductTavern key="producttavern" />,
+    <IIT key="iit" />,
+  ];
+
+  const row2Items = [
+    <GenerationAlpha key="genalpha" />,
+    <Zone247 key="zone247" />,
+    <Kotmale key="kotmale" />,
+    <BuildClub key="buildclub" />,
+    <CeylonToday key="ceylontoday" />,
+    <SinhalaSponsor key="sinhala" />,
+    <HackathonsLk key="hackathons" />,
+    <UniversityCap key="unicap" />,
+  ];
+
+  const row3Items = [
+    <IEEEInnovation key="ieeein" />,
+    <IEEEFoundation key="ieeef" />,
+    <LOLC key="lolc" />,
+    <ELearningLk key="elearning" />,
+    <PearlBay key="pearlbay" />,
+    <LankanAngelNetwork key="lankanangel" />,
+    <MediaSocietyIIT key="mediasoc" />,
+    <Cicada key="cicada" />,
+  ];
+
+  return (
+    <section 
+      id="partners" 
+      className="relative bg-black py-32 sm:py-48 overflow-hidden border-t border-white/5"
+    >
+      {/* Background radial highlight */}
+      <div className="absolute inset-0 -z-10 overflow-hidden select-none pointer-events-none" aria-hidden="true">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[600px] w-[600px] rounded-full bg-[#FF5533]/5 blur-[140px]" />
+      </div>
+
+      {/* Header (Centered) */}
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mb-16 sm:mb-24">
+        {/* Section Heading */}
+        <div className="text-center space-y-3 select-none">
+          <span className="text-[#FF5533] text-[11px] font-bold uppercase tracking-[0.25em] flex items-center justify-center gap-1.5">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#FF5533] shadow-[0_0_8px_#FF5533]" />
+            BACKED BY THE BEST
+          </span>
+          <h2 className="text-4xl sm:text-6xl font-light tracking-tight leading-none text-white font-space uppercase">
+            <span
+              className="font-extrabold"
+              style={{ WebkitTextStroke: "1px rgba(255, 255, 255, 0.4)", color: "transparent" }}
+            >
+              OUR
+            </span>{" "}
+            <span className="font-cormorant italic text-white font-medium lowercase">Partners</span>
           </h2>
-          <p className="mx-auto max-w-2xl text-lg text-slate-300">
-            From startups to enterprises, teams trust Nova to power their most critical applications.
-          </p>
+          <span className="text-[10px] sm:text-[11px] font-bold text-slate-500 uppercase tracking-widest block font-space pt-2">
+            THE ORGANIZATIONS POWERING PROJECT NOVA
+          </span>
         </div>
+      </div>
 
-        <div className="mb-20 overflow-hidden">
-          <div className="flex animate-scroll gap-8 lg:gap-16" aria-hidden="true">
-            {partners.map((partner) => (
-              <div key={partner.name} className="flex-shrink-0 flex items-center gap-3 rounded-xl bg-white/5 px-6 py-3 transition-all hover:bg-white/10">
-                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-violet-600/20 to-indigo-600/20">
-                  <span className="text-xs font-bold text-violet-400 uppercase">
-                    {partner.name.charAt(0)}
-                  </span>
-                </div>
-                <span className="font-medium text-white">{partner.name}</span>
-              </div>
-            ))}
-            {partners.map((partner) => (
-              <div key={`${partner.name}-2`} className="flex-shrink-0 flex items-center gap-3 rounded-xl bg-white/5 px-6 py-3 transition-all hover:bg-white/10">
-                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-violet-600/20 to-indigo-600/20">
-                  <span className="text-xs font-bold text-violet-400 uppercase">
-                    {partner.name.charAt(0)}
-                  </span>
-                </div>
-                <span className="font-medium text-white">{partner.name}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="mb-16 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-          {[
-            { value: "500K+", label: "Developers" },
-            { value: "50K+", label: "Teams" },
-            { value: "Fortune 500", label: "Companies" },
-            { value: "99.99%", label: "Retention Rate" },
-          ].map((stat) => (
-            <div key={stat.label} className="text-center p-6 rounded-2xl border border-white/10 bg-white/5">
-              <div className="mb-2 text-3xl font-bold text-white sm:text-4xl">{stat.value}</div>
-              <div className="text-slate-400">{stat.label}</div>
-            </div>
-          ))}
-        </div>
-
-        <div>
-          <h3 className="mb-8 text-center text-2xl font-bold text-white">
-            Integrates with your stack
-          </h3>
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            {integrations.map((integration) => (
-              <div
-                key={integration.name}
-                className="rounded-xl border border-white/10 bg-white/5 p-4 transition-all hover:border-violet-500/30 hover:bg-white/10"
-              >
-                <div className="mb-2 flex items-center gap-2">
-                  <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-violet-600/20 to-indigo-600/20">
-                    <span className="text-xs font-bold text-violet-400 uppercase">
-                      {integration.name.charAt(0)}
-                    </span>
-                  </span>
-                  <span className="font-medium text-white">{integration.name}</span>
-                </div>
-                <p className="text-sm text-slate-400">{integration.description}</p>
-                <span className="inline-block mt-2 rounded-full bg-violet-600/20 px-2 py-0.5 text-xs font-medium text-violet-300">
-                  {integration.category}
-                </span>
-              </div>
-            ))}
-          </div>
-        </div>
+      {/* Carousel Tracks Wrapper - Spans full width edge-to-edge */}
+      <div className="flex flex-col gap-8 sm:gap-12 relative w-full overflow-hidden">
+        <MarqueeRow direction="left" speed={30}>
+          {row1Items}
+        </MarqueeRow>
+        
+        <MarqueeRow direction="right" speed={35}>
+          {row2Items}
+        </MarqueeRow>
+        
+        <MarqueeRow direction="left" speed={32}>
+          {row3Items}
+        </MarqueeRow>
       </div>
     </section>
   );

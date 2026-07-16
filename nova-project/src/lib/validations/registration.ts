@@ -1,13 +1,5 @@
 import { z } from "zod";
-
-const sanitizeHtml = (str: string) => {
-  return str
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#39;');
-};
+import { sanitizeHtml, sanitizePhone, sanitizeEmail, sanitizeNic } from "@/lib/sanitize";
 
 export const memberSchema = z.object({
   fullname: z
@@ -20,19 +12,19 @@ export const memberSchema = z.object({
     .string()
     .trim()
     .email("Please enter a valid email address")
-    .transform(sanitizeHtml),
+    .transform(sanitizeEmail),
   whatsapp_no: z
     .string()
     .trim()
     .min(8, "WhatsApp number must be at least 8 digits")
     .max(20, "WhatsApp number cannot exceed 20 characters")
-    .transform(sanitizeHtml),
+    .transform(sanitizePhone),
   nic_no: z
     .string()
     .trim()
     .min(5, "NIC/ID number must be at least 5 characters")
     .max(20, "NIC/ID number cannot exceed 20 characters")
-    .transform(sanitizeHtml),
+    .transform(sanitizeNic),
   is_leader: z.boolean(),
 });
 
@@ -57,4 +49,4 @@ export const registrationSchema = z.object({
 });
 
 export type RegistrationFormData = z.infer<typeof registrationSchema>;
-export type MemberFormData = z.infer<typeof memberSchema>;
+export type MemberData = z.infer<typeof memberSchema>;

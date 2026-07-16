@@ -1,12 +1,15 @@
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 import { sendRegistrationEmail } from "@/lib/mailer";
+import { sanitizeEmail, sanitizeText, escapeHtml } from "@/lib/sanitize";
 
 // Simple schema for email request
 const emailSchema = z.object({
-  email: z.string().email(),
-  teamName: z.string().min(1),
-  memberNames: z.array(z.string()),
+  email: z.string().email().transform(sanitizeEmail),
+  teamName: z.string().min(1).transform((val) => escapeHtml(sanitizeText(val, { maxLength: 100 }))),
+  memberNames: z.array(z.string()).transform((arr) =>
+    arr.map((name) => escapeHtml(sanitizeText(name, { maxLength: 100 })))
+  ),
 });
 
 export async function POST(req: NextRequest) {

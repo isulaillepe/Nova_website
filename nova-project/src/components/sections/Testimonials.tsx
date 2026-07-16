@@ -1,57 +1,79 @@
 "use client";
 
 import * as React from "react";
-import { ChevronLeft, ChevronRight, Star, Quote } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { ChevronLeft, ChevronRight, Mail, Phone, Award, Handshake, Building2, Sparkles } from "lucide-react";
+import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 
-const testimonials = [
+const committee = [
   {
-    quote: "Nova transformed our deployment pipeline. What used to take 45 minutes now takes under 3 seconds. The developer experience is unmatched.",
-    author: "Sarah Chen",
-    role: "VP Engineering at Vercel",
-    avatar: "SC",
-    company: "Vercel",
-    rating: 5,
+    name: "Niyoma Bodinie",
+    role: "Organizing Committee President – Project Nova",
+    contact: "+94 77 081 2900",
+    email: "niyomabodinie@aiesec.net",
+    avatar: "NB",
+    icon: Award,
+    badge: "President",
+    badgeColor: "amber",
   },
   {
-    quote: "The edge functions are a game-changer. We moved our entire auth layer to the edge and saw a 60% reduction in latency globally.",
-    author: "Marcus Johnson",
-    role: "CTO at Linear",
-    avatar: "MJ",
-    company: "Linear",
-    rating: 5,
+    name: "Dinuki Masakorala",
+    role: "Local Committee Vice President Business Development",
+    contact: "+94 77 141 0592",
+    email: "dinuki.masakorala@aiesec.net",
+    avatar: "DM",
+    icon: Handshake,
+    badge: "VP Business Development",
+    badgeColor: "violet",
   },
   {
-    quote: "Best database experience I've had in 15 years. Multi-region replication just works. No more late-night paging for failovers.",
-    author: "Priya Patel",
-    role: "Staff Engineer at Notion",
-    avatar: "PP",
-    company: "Notion",
-    rating: 5,
+    name: "Dinuka Wimalagunasekara",
+    role: "Organizing Committee Vice President Partnership Development",
+    contact: "+94 74 090 1606",
+    email: "diw02@aiesec.net",
+    avatar: "DW",
+    icon: Building2,
+    badge: "VP Partnership Development",
+    badgeColor: "emerald",
   },
   {
-    quote: "Preview deployments changed how our team works. Every PR gets a live URL instantly. Code reviews are now so much faster.",
-    author: "Alex Rivera",
-    role: "Engineering Lead at Figma",
-    avatar: "AR",
-    company: "Figma",
-    rating: 5,
+    name: "Pahanma Kumarasiri",
+    role: "Organizing Committee Vice President Partnership Development",
+    contact: "+94 74 090 1606",
+    email: "pahanmakumarasiri@aiesec.net",
+    avatar: "PK",
+    icon: Building2,
+    badge: "VP Partnership Development",
+    badgeColor: "emerald",
   },
   {
-    quote: "The CLI and SDKs are best-in-class. Type-safe from database to frontend. Our onboarding time for new devs dropped from days to hours.",
-    author: "Emma Wilson",
-    role: "Tech Lead at Stripe",
-    avatar: "EW",
-    company: "Stripe",
-    rating: 5,
+    name: "Manaal Zainab",
+    role: "Organizing Committee Vice President Partnership Development",
+    contact: "+94 76 107 5552",
+    email: "manaalzainab@aiesec.net",
+    avatar: "MZ",
+    icon: Building2,
+    badge: "VP Partnership Development",
+    badgeColor: "emerald",
+  },
+  {
+    name: "Tharsigan Gnanasekar",
+    role: "Organizing Committee Vice President Partnership Development",
+    contact: "+94 76 253 5540",
+    email: "tharsigan2004@aiesec.net",
+    avatar: "TG",
+    icon: Building2,
+    badge: "VP Partnership Development",
+    badgeColor: "emerald",
   },
 ];
+
 
 export function Testimonials() {
   const [currentIndex, setCurrentIndex] = React.useState(0);
 
-  const next = () => setCurrentIndex((i) => (i + 1) % testimonials.length);
-  const prev = () => setCurrentIndex((i) => (i - 1 + testimonials.length) % testimonials.length);
+  const next = () => setCurrentIndex((i) => (i + 1) % committee.length);
+  const prev = () => setCurrentIndex((i) => (i - 1 + committee.length) % committee.length);
 
   React.useEffect(() => {
     const interval = setInterval(next, 5000);
@@ -59,63 +81,78 @@ export function Testimonials() {
   }, []);
 
   return (
-    <section id="testimonials" className="relative py-20 sm:py-28 lg:py-32 bg-slate-950">
+    <section id="committee" className="relative py-20 sm:py-28 lg:py-32 bg-[var(--nova-bg)]">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mb-16 text-center">
           <div className="mb-4 flex items-center justify-center gap-2">
             <span className="relative inline-flex items-center gap-1.5 rounded-full bg-emerald-600/20 px-3 py-1 text-xs font-medium text-emerald-300">
               <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
-              Trusted by innovators
+              Organizing Committee
             </span>
           </div>
           <h2 className="mb-4 text-3xl font-bold tracking-tight text-white sm:text-4xl md:text-5xl">
-            Loved by the world&apos;s{" "}
-            <span className="bg-gradient-to-r from-violet-400 via-indigo-400 to-cyan-400 bg-clip-text text-transparent">
-              best engineering teams
+            Logic on their minds, passion in their soul.
+            <br />
+            <span className="bg-gradient-to-r from-[var(--nova-primary)] via-indigo-400 to-cyan-400 bg-clip-text text-transparent">
+              Meet the execution leaders behind Project Nova.
             </span>
           </h2>
           <p className="mx-auto max-w-2xl text-lg text-slate-300">
-            See what developers and companies are saying about their experience with Nova.
+            A dedicated team of student leaders driving innovation and creating opportunities for the next generation of tech innovators.
           </p>
         </div>
 
-        <div className="relative">
+        {/* Committee Carousel */}
+        <div className="relative mb-16">
           <div className="overflow-hidden">
             <div
               className="flex transition-transform duration-500 ease-out"
-              style={{ transform: `translateX(-${currentIndex * (100 / testimonials.length)}%)` }}
+              style={{ transform: `translateX(-${currentIndex * (100 / committee.length)}%)` }}
             >
-              {testimonials.map((testimonial) => (
+              {committee.map((member) => (
                 <div
-                  key={testimonial.author}
+                  key={member.name}
                   className="flex w-full shrink-0 px-4"
-                  style={{ width: `${100 / testimonials.length * 100}%`, maxWidth: "100%" }}
+                  style={{ width: `${100 / committee.length * 100}%`, maxWidth: "100%" }}
                 >
                   <div className="w-full max-w-xl mx-auto">
-                    <div className="mb-6 flex items-center gap-1" aria-label={`${testimonial.rating} out of 5 stars`}>
-                      {Array.from({ length: 5 }).map((_, i) => (
-                        <Star
-                          key={i}
-                          className="h-5 w-5 text-amber-400 fill-current"
-                          aria-hidden="true"
-                        />
-                      ))}
-                    </div>
-                    <div className="relative">
-                      <Quote className="absolute -top-2 -left-2 h-12 w-12 text-violet-600/30" aria-hidden="true" />
-                      <blockquote className="relative mb-6 text-lg leading-relaxed text-slate-200">
-                        &ldquo;{testimonial.quote}&rdquo;
-                      </blockquote>
-                    </div>
-                    <div className="flex items-center gap-4">
-                      <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-violet-600 to-indigo-600 text-white font-medium">
-                        {testimonial.avatar}
-                      </div>
-                      <div>
-                        <p className="font-medium text-white">{testimonial.author}</p>
-                        <p className="text-sm text-slate-400">{testimonial.role}</p>
-                      </div>
-                    </div>
+                    <Card className="relative overflow-hidden border-white/10 bg-white/5 backdrop-blur-sm transition-all hover:border-[var(--nova-primary)]/30 hover:bg-white/10 hover:shadow-[0_0_30px_rgba(0,53,153,0.1)] h-full">
+                      <CardContent className="relative p-6">
+                        <div className="mb-6 flex items-center justify-between">
+                          <div className="flex items-center gap-3">
+                            <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-[var(--nova-primary)] to-indigo-600 text-white font-bold text-xl">
+                              {member.avatar}
+                            </div>
+                            <div>
+                              <p className="font-semibold text-white">{member.name}</p>
+                              <p className="text-sm text-slate-400">{member.role}</p>
+                            </div>
+                          </div>
+                          <Badge variant="secondary" className={`text-xs ${
+                            member.badgeColor === 'amber' ? 'bg-amber-500/20 text-amber-300' : member.badgeColor === 'violet' ? 'bg-violet-500/20 text-violet-300' : 'bg-emerald-500/20 text-emerald-300'
+                          }`}>
+                            {member.badge}
+                          </Badge>
+                        </div>
+
+                        <div className="space-y-3">
+                          <div className="flex items-center gap-3 text-slate-300">
+                            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-white/5 text-emerald-400">
+                              <Phone className="h-5 w-5" />
+                            </div>
+                            <span>{member.contact}</span>
+                          </div>
+                          <div className="flex items-center gap-3 text-slate-300">
+                            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-white/5 text-[var(--nova-primary)]">
+                              <Mail className="h-5 w-5" />
+                            </div>
+                            <a href={`mailto:${member.email}`} className="hover:text-[var(--nova-secondary)] transition-colors">
+                              {member.email}
+                            </a>
+                          </div>
+                        </div>
+                      </CardContent>
+                    </Card>
                   </div>
                 </div>
               ))}
@@ -123,53 +160,40 @@ export function Testimonials() {
           </div>
 
           <div className="absolute inset-y-0 left-0 right-0 flex items-center justify-between z-10 px-4 pointer-events-none">
-            <Button
-              variant="ghost"
-              size="icon"
-              className="pointer-events-auto bg-white/5 backdrop-blur-sm hover:bg-white/10"
+            <button
               onClick={prev}
-              aria-label="Previous testimonial"
+              className="pointer-events-auto rounded-full bg-white/5 backdrop-blur-sm p-2 text-slate-300 hover:bg-white/10 hover:text-white transition-all"
+              aria-label="Previous member"
             >
-              <ChevronLeft className="h-5 w-5 text-slate-300" />
-            </Button>
-            <Button
-              variant="ghost"
-              size="icon"
-              className="pointer-events-auto bg-white/5 backdrop-blur-sm hover:bg-white/10"
+              <ChevronLeft className="h-5 w-5" />
+            </button>
+            <button
               onClick={next}
-              aria-label="Next testimonial"
+              className="pointer-events-auto rounded-full bg-white/5 backdrop-blur-sm p-2 text-slate-300 hover:bg-white/10 hover:text-white transition-all"
+              aria-label="Next member"
             >
-              <ChevronRight className="h-5 w-5 text-slate-300" />
-            </Button>
+              <ChevronRight className="h-5 w-5" />
+            </button>
           </div>
 
           {/* Dot indicators */}
           <div className="mt-8 flex items-center justify-center gap-2">
-            {testimonials.map((_, index) => (
+            {committee.map((_, index) => (
               <button
                 key={index}
                 onClick={() => setCurrentIndex(index)}
                 className={`h-2 rounded-full transition-all duration-300 ${
                   index === currentIndex
-                    ? "w-8 bg-violet-500"
+                    ? "w-8 bg-[var(--nova-primary)]"
                     : "w-2 bg-white/20 hover:bg-white/40"
                 }`}
-                aria-label={`Go to testimonial ${index + 1}`}
+                aria-label={`Go to member ${index + 1}`}
               />
             ))}
           </div>
         </div>
 
-        <div className="mt-16 flex flex-wrap items-center justify-center gap-8 text-slate-500">
-          {["Vercel", "Linear", "Notion", "Figma", "Stripe", "OpenAI", "Anthropic"].map((company) => (
-            <span
-              key={company}
-              className="text-sm font-medium uppercase tracking-wider transition-colors hover:text-slate-300"
-            >
-              {company}
-            </span>
-          ))}
-        </div>
+
       </div>
     </section>
   );
