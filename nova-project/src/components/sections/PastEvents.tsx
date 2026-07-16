@@ -128,14 +128,26 @@ export default function PastEvents() {
           {/* Carousel Container */}
           <div className="relative w-full h-[280px] sm:h-[380px] md:h-[440px] flex items-center justify-center">
             
-            {/* Navigation Arrow Left */}
-            <button
-              onClick={handlePrev}
-              className="absolute left-2 sm:left-6 z-40 p-2 sm:p-3 rounded-full bg-slate-950/50 backdrop-blur-md border border-white/10 hover:border-[#FF5533]/50 text-slate-400 hover:text-white transition-all duration-300 active:scale-95"
-              aria-label="Previous event"
-            >
-              <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
-            </button>
+            {/* Arrow Navigation Wrapper (directly positioned relative to the centers of the left and right sibling cards) */}
+            <div className="absolute w-[90vw] sm:w-[75vw] md:w-[63vw] lg:w-[52.5vw] aspect-[16/10] pointer-events-none z-40 flex items-center justify-between">
+              {/* Navigation Arrow Left */}
+              <button
+                onClick={handlePrev}
+                className="pointer-events-auto p-2 sm:p-3 rounded-full bg-slate-950/60 backdrop-blur-md border border-white/10 hover:border-[#FF5533]/50 text-slate-400 hover:text-white transition-all duration-300 active:scale-95 shadow-[0_0_15px_rgba(0,0,0,0.5)] -translate-x-1/2"
+                aria-label="Previous event"
+              >
+                <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
+              </button>
+
+              {/* Navigation Arrow Right */}
+              <button
+                onClick={handleNext}
+                className="pointer-events-auto p-2 sm:p-3 rounded-full bg-slate-950/60 backdrop-blur-md border border-white/10 hover:border-[#FF5533]/50 text-slate-400 hover:text-white transition-all duration-300 active:scale-95 shadow-[0_0_15px_rgba(0,0,0,0.5)] translate-x-1/2"
+                aria-label="Next event"
+              >
+                <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
+              </button>
+            </div>
 
             {/* Carousel Slide Window */}
             <div ref={containerRef} className="relative w-full h-full flex items-center justify-center overflow-visible">
@@ -265,15 +277,6 @@ export default function PastEvents() {
                 );
               })}
             </div>
-
-            {/* Navigation Arrow Right */}
-            <button
-              onClick={handleNext}
-              className="absolute right-2 sm:right-6 z-40 p-2 sm:p-3 rounded-full bg-slate-950/50 backdrop-blur-md border border-white/10 hover:border-[#FF5533]/50 text-slate-400 hover:text-white transition-all duration-300 active:scale-95"
-              aria-label="Next event"
-            >
-              <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
-            </button>
           </div>
 
           {/* Carousel Indicators (Dashes) */}

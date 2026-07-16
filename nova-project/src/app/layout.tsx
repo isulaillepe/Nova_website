@@ -86,8 +86,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${poppins.variable} ${spaceGrotesk.variable} ${cormorantGaramond.variable} ${orbitron.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col bg-[var(--nova-bg)] text-slate-50">
+    <html lang="en" className={`${poppins.variable} ${spaceGrotesk.variable} ${cormorantGaramond.variable} ${orbitron.variable} min-h-screen antialiased`}>
+      <body className="min-h-screen flex flex-col bg-[var(--nova-bg)] text-slate-50">
         <Script
           type="module"
           src="https://unpkg.com/@splinetool/viewer@1.9.82/build/spline-viewer.js"

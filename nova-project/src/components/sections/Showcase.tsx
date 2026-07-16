@@ -17,19 +17,7 @@ const TICKER_ITEMS = [
 ];
 
 export function Showcase() {
-  const [videoPlaying, setVideoPlaying] = React.useState(false);
-  const videoRef = React.useRef<HTMLVideoElement>(null);
-
-  const toggleVideo = () => {
-    if (videoRef.current) {
-      if (videoPlaying) {
-        videoRef.current.pause();
-      } else {
-        videoRef.current.play().catch(() => {});
-      }
-      setVideoPlaying(!videoPlaying);
-    }
-  };
+  // Note: Video states can be restored here once the highlights video is active.
 
   return (
     <section
@@ -110,6 +98,18 @@ export function Showcase() {
           <div className="relative">
             <div className="relative rounded-2xl border border-white/10 bg-white/5 overflow-hidden shadow-2xl group">
               <div className="aspect-video relative bg-slate-900">
+                {/* 
+                  To play a highlights video:
+                  1. Place your video file named 'hero-video.mp4' inside the /public folder.
+                  2. Uncomment the <video> block below and remove the static <img> placeholder.
+                */}
+                <img
+                  src="/images/event_pitch_thumbnail.png"
+                  alt="Project Nova highlights preview"
+                  className="absolute inset-0 w-full h-full object-cover opacity-80 transition-all duration-500 group-hover:scale-103 group-hover:opacity-95"
+                />
+                
+                {/*
                 <video
                   ref={videoRef}
                   className="absolute inset-0 w-full h-full object-cover opacity-80 transition-opacity group-hover:opacity-100"
@@ -118,31 +118,20 @@ export function Showcase() {
                   autoPlay
                   loop
                   muted
-                  poster="/placeholder-video.png"
+                  poster="/images/event_pitch_thumbnail.png"
                   aria-label="Project Nova highlights video"
                 >
                   <source src="/hero-video.mp4" type="video/mp4" />
                 </video>
+                */}
                 <div className="absolute inset-0 bg-gradient-to-t from-[var(--nova-bg)]/90 via-transparent to-transparent" />
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <button
-                    onClick={toggleVideo}
-                    className="relative flex h-20 w-20 items-center justify-center rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white transition-all hover:bg-white/20 hover:border-white/30 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-[var(--nova-primary)]/50"
-                    aria-label={videoPlaying ? "Pause video" : "Play video"}
-                    type="button"
+                  <div
+                    className="relative flex h-16 w-16 items-center justify-center rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white transition-all group-hover:scale-110"
+                    aria-hidden="true"
                   >
-                    {videoPlaying ? (
-                      <span className="flex h-8 w-8 items-center justify-center" aria-hidden="true">
-                        <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
-                          <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
-                        </svg>
-                      </span>
-                    ) : (
-                      <span className="ml-1 flex h-8 w-8 items-center justify-center" aria-hidden="true">
-                        <Video className="h-6 w-6" />
-                      </span>
-                    )}
-                  </button>
+                    <Video className="h-5 w-5 text-slate-300" />
+                  </div>
                 </div>
                 <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-sm text-slate-300">
                   <span className="flex items-center gap-1.5">
@@ -236,7 +225,7 @@ export function Showcase() {
               <div className="aspect-[4/3] relative">
                 <picture>
                   <img
-                    src="/showcase-teams.jpg"
+                    src="/images/past-events/codesprint_4.png"
                     alt="Project Nova finalist teams collaborating"
                     loading="lazy"
                     className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"

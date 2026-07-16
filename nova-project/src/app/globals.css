@@ -135,6 +135,56 @@ body {
   .animate-pulse-glow {
     animation: pulseGlow 3s ease-in-out infinite;
   }
+
+  .animate-fade-in-up {
+    animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  /* tailwindcss-animate emulation */
+  @keyframes enter {
+    from {
+      opacity: var(--tw-enter-opacity, 1);
+      transform: translate3d(var(--tw-enter-translate-x, 0), var(--tw-enter-translate-y, 0), 0) scale3d(var(--tw-enter-scale, 1), var(--tw-enter-scale, 1), 1) rotate(var(--tw-enter-rotate, 0));
+    }
+  }
+
+  .animate-in {
+    animation-name: enter;
+    animation-duration: 150ms;
+    animation-fill-mode: both;
+  }
+
+  .fade-in {
+    --tw-enter-opacity: 0;
+  }
+
+  .slide-in-from-bottom-4 {
+    --tw-enter-translate-y: 1rem;
+  }
+
+  .slide-in-from-right-4 {
+    --tw-enter-translate-x: 1rem;
+  }
+
+  .duration-500 {
+    animation-duration: 500ms;
+  }
+
+  .duration-700 {
+    animation-duration: 700ms;
+  }
+
+  .duration-1000 {
+    animation-duration: 1000ms;
+  }
+
+  .delay-100 {
+    animation-delay: 100ms;
+  }
+
+  .delay-200 {
+    animation-delay: 200ms;
+  }
 }
 
 @keyframes appleFadeInUp {
@@ -145,6 +195,26 @@ body {
   100% {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scan {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100%);
   }
 }
 
@@ -231,7 +301,12 @@ body {
   animation: marquee-right 40s linear infinite;
 }
 
+.animate-marquee {
+  animation: marquee-left 40s linear infinite;
+}
+
 /* Hover-pause animation play state */
+.marquee-row:hover .animate-marquee,
 .marquee-row:hover .animate-marquee-left,
 .marquee-row:hover .animate-marquee-right {
   animation-play-state: paused !important;
