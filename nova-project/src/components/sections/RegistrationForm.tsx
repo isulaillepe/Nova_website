@@ -20,11 +20,9 @@ import {
   Trash2,
   Crown,
   Loader2,
-  Sparkles,
   AlertCircle,
   GraduationCap,
   School,
-  Shield,
 } from "lucide-react";
 import { db } from "@/lib/firebase";
 import { collection, addDoc, getDocs, query, where, limit, serverTimestamp } from "firebase/firestore";

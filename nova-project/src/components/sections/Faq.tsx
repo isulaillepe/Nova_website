@@ -3,7 +3,6 @@
 import * as React from "react";
 import { useState, useRef, useEffect } from "react";
 import { motion, useScroll, useTransform, useMotionValueEvent, MotionValue } from "framer-motion";
-import Link from "next/link";
 import { Mail } from "lucide-react";
 import { FaLinkedinIn, FaFacebookF, FaYoutube, FaInstagram, FaTiktok, FaWhatsapp } from "react-icons/fa";
 
